@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "mf6Y59Oo+yHJx5J/y0Or2oZB+qIgdIAHlqNoFK0H1PhLCgaOLXfBgQPzinykScqCQGTOHnzR3gvLQixMY+DS9g==",
+  "success": true,
+  "projectFilePath": "S:\\RiderProjects\\MealDiary\\Backend\\MealDiary\\MealDiary.API\\MealDiary.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sulai\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\sulai\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\sulai\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\sulai\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\sulai\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\sulai\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
