@@ -1,0 +1,12 @@
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\bin\Debug\net6.0\MealDiary.Services.deps.json
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\bin\Debug\net6.0\MealDiary.Services.dll
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\bin\Debug\net6.0\ref\MealDiary.Services.dll
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\bin\Debug\net6.0\MealDiary.Services.pdb
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.csproj.AssemblyReference.cache
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.GeneratedMSBuildEditorConfig.editorconfig
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.AssemblyInfoInputs.cache
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.AssemblyInfo.cs
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.csproj.CoreCompileInputs.cache
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.dll
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\ref\MealDiary.Services.dll
+S:\RiderProjects\MealDiary\Backend\MealDiary\MealDiary.Services\obj\Debug\net6.0\MealDiary.Services.pdb
