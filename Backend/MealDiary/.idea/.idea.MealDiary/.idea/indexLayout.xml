@@ -2,7 +2,7 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders>
-      <Path>../../../MealDiary</Path>
+      <Path>../../Frontend/MealDiary</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

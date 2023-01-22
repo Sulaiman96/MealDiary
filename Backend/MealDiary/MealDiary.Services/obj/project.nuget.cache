@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "MMfv4JFJs9RRPFV8JXKah6Ns4Xt5tsjlKiS1ewx7PtipcyvsxqEZoyaAIOuyjQvWg1TmHfacL63h+wvai3U4wA==",
+  "success": true,
+  "projectFilePath": "S:\\RiderProjects\\MealDiary\\Backend\\MealDiary\\MealDiary.Services\\MealDiary.Services.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sulai\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512"
+  ],
+  "logs": []
+}
