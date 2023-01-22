@@ -17,6 +17,7 @@ public class Meals
     public string? Description { get; set; }
     public string? Review { get; set; }
     public string MealCourse { get; set; }
+    public string? ShareLink { get; set; }
     public DateTime? ShareLinkDate { get; set; }
     
     [ForeignKey("Cuisines")]

@@ -8,7 +8,6 @@ public class Users
 {
     [Key]
     public int Id { get; set; }
-    
     public string Email { get; set; }
     public string User { get; set; }
     public string HashedPassword { get; set; }
