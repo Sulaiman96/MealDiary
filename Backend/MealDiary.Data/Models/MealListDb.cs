@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MealDiary.Services.Models;
+namespace MealDiary.Data.Models;
 
 [Table("MealLists")]
-public class MealLists
+public class MealListDb
 {
     [Key]
     public int Id { get; set; }

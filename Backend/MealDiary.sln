@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API", "MealDiary.API\MealDiary.API.csproj", "{C6DAC85E-2A20-4665-8F21-1FA60DE4B02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Services", "MealDiary.Services\MealDiary.Services.csproj", "{0BE4056E-0DFE-4D67-A504-AB1071255D57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Data", "MealDiary.Data\MealDiary.Data.csproj", "{0BE4056E-0DFE-4D67-A504-AB1071255D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

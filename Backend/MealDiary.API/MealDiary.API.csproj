@@ -8,8 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
         <PackageReference Include="Npgsql" Version="7.0.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MealDiary.Services\MealDiary.Services.csproj" />
+      <ProjectReference Include="..\MealDiary.Data\MealDiary.Data.csproj" />
     </ItemGroup>
 
 </Project>

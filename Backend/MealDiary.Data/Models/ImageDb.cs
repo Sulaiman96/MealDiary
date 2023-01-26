@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MealDiary.Services.Models;
+namespace MealDiary.Data.Models;
 
 [Table("Images")]
-public class Images
+public class ImageDb
 {
     [Key]
     public int Id { get; set; }

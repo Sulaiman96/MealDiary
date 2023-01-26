@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MealDiary.Services.Models;
+namespace MealDiary.Data.Models;
 
 [Table("Meals")]
-public class Meals
+public class MealDb
 {
     [Key]
     public int Id { get; set; }
@@ -19,13 +19,12 @@ public class Meals
     public string MealCourse { get; set; }
     public string? ShareLink { get; set; }
     public DateTime? ShareLinkDate { get; set; }
-    
+    public ICollection<IngredientDb> Ingredients { get; set; }
+
     [ForeignKey("Cuisines")]
     public int? CuisineTypeId { get; set; }
     [ForeignKey("Users")]
     public int? UsersId { get; set; }
-    [ForeignKey("Ingredients")]
-    public int? IngredientId { get; set; }
-    [ForeignKey("Images")]
-    public int? ImageId { get; set; }
+    [ForeignKey("Lists")]
+    public int? ListId { get; set; }
 }
