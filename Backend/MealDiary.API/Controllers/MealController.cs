@@ -7,16 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class MealController : ControllerBase
+public class MealController : BaseApiController
 {
-    private readonly IMapper _mapper;
-    private readonly IMealDiaryDatabase _mealDiaryDatabase;
-    public MealController(IMapper mapper, IMealDiaryDatabase mealDiaryDatabase)
+    public MealController(IMapper mapper, IMealDiaryDatabase mealDiaryDatabase) : base(mapper, mealDiaryDatabase)
     {
-        _mapper = mapper;
-        _mealDiaryDatabase = mealDiaryDatabase;
     }
 
     [HttpPost]
@@ -26,10 +20,7 @@ public class MealController : ControllerBase
         var mappedMealDb = _mapper.Map<MealDb>(createMealDto);
         mappedMealDb.DateAdded = DateTime.UtcNow;
         var insertedMealDb = await _mealDiaryDatabase.CreateMeal(mappedMealDb);
-        
         insertedMealDb.UsersId = int.MaxValue;
-        insertedMealDb.ShareLink = $"www.mealdiary/{insertedMealDb.UsersId}/{insertedMealDb.ListId}/{insertedMealDb.Id}";
-        insertedMealDb.ShareLinkDate = DateTime.UtcNow;
         
         var mappedMealDto = _mapper.Map<MealDto>(insertedMealDb);
         return CreatedAtAction(nameof(GetMeal),new {id = mappedMealDto.Id} , mappedMealDto);

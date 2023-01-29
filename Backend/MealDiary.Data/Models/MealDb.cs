@@ -17,14 +17,14 @@ public class MealDb
     public string? Description { get; set; }
     public string? Review { get; set; }
     public string MealCourse { get; set; }
-    public string? ShareLink { get; set; }
-    public DateTime? ShareLinkDate { get; set; }
     public ICollection<IngredientDb> Ingredients { get; set; }
 
     [ForeignKey("Cuisines")]
     public int? CuisineTypeId { get; set; }
-    [ForeignKey("Users")]
+    
+    [ForeignKey("Users")] 
     public int? UsersId { get; set; }
+    
     [ForeignKey("Lists")]
     public int? ListId { get; set; }
 }

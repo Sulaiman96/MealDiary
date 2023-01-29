@@ -9,8 +9,7 @@ public class MealListDb
     [Key]
     public int Id { get; set; }
     
-    [ForeignKey("Meals")]
-    public int mealId { get; set; }
+    public ICollection<MealDb> Meals { get; set; }
     
     [ForeignKey("Lists")]
     public int listId { get; set; }

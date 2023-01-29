@@ -15,5 +15,4 @@ public class ListDb
     
     [ForeignKey("Users")]
     public int UsersId { get; set; }
-
 }
