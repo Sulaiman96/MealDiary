@@ -1,24 +1,23 @@
-using MealDiary.Data;
+using MealDiary.API.Data;
+using MealDiary.API.Extensions;
 using MealDiary.Data.Mapping;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
-builder.Services.AddTransient<IMealDiaryDatabase, MealDiaryDatabase>();
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    builder.Services.AddControllers();
+    builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+    builder.Services.AddDbContext<DataContext>(options =>
+    {
+        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
+    builder.Services.RegisterServices();
 }
 
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
+var app = builder.Build();
+{
+    app.MapControllers();
+    app.Run();
+}
 
-app.MapControllers();
-
-app.Run();

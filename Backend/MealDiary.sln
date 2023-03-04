@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API", "MealDiary.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Data", "MealDiary.Data\MealDiary.Data.csproj", "{0BE4056E-0DFE-4D67-A504-AB1071255D57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API.Tests.Unit", "MealDiary.API.Tests.Unit\MealDiary.API.Tests.Unit.csproj", "{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API.Tests.Integration", "MealDiary.API.Tests.Integration\MealDiary.API.Tests.Integration.csproj", "{C75CE9D3-01EA-4A04-A68E-CF172296746D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{0BE4056E-0DFE-4D67-A504-AB1071255D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BE4056E-0DFE-4D67-A504-AB1071255D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BE4056E-0DFE-4D67-A504-AB1071255D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75CE9D3-01EA-4A04-A68E-CF172296746D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75CE9D3-01EA-4A04-A68E-CF172296746D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75CE9D3-01EA-4A04-A68E-CF172296746D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75CE9D3-01EA-4A04-A68E-CF172296746D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
