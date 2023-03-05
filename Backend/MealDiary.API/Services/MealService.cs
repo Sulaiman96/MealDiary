@@ -1,20 +1,25 @@
-using MealDiary.Data.Models.DTOs;
+using MealDiary.API.DTOs;
 
 namespace MealDiary.API.Services;
 
 public class MealService : IMealService
 {
-    public MealDto CreateMeal(MealDto mealDto)
+    public MealResponse CreateMeal(MealRequest mealRequest)
     {
         throw new NotImplementedException();
     }
 
-    public bool DeleteMeal(MealDto mealDto)
+    public bool DeleteMeal(MealRequest mealRequest)
     {
         throw new NotImplementedException();
     }
 
-    public MealDto UpdateMeal(MealDto mealDto)
+    public MealResponse GetMealById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<MealResponse> GetMeals()
     {
         throw new NotImplementedException();
     }

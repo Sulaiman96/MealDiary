@@ -1,24 +1,21 @@
-using AutoMapper;
-using MealDiary.API.Data;
+using MealDiary.API.DTOs;
 using MealDiary.API.Services;
-using MealDiary.Data.Models;
-using MealDiary.Data.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
+[Route("api/[controller]")]
 public class MealController : ControllerBase
 {
     private readonly IMealService _mealService;
-
     public MealController(IMealService mealService)
     {
         _mealService = mealService;
     }
 
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(MealDto))]
-    public async Task<IActionResult> CreateMeal(CreateMealDto createMealDto)
+    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(MealResponse))]
+    public async Task<IActionResult> CreateMeal(MealRequest mealRequest)
     {
         // var mappedMealDb = _mapper.Map<MealDb>(createMealDto);
         // mappedMealDb.DateAdded = DateTime.UtcNow;
@@ -30,22 +27,18 @@ public class MealController : ControllerBase
         return Ok();
     }
     
-    [HttpGet("{Id:int}")]
-    [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(MealDto))]
-    public IActionResult GetMeal(int Id)
+    [HttpGet("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MealResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult GetMeal(int id)
     {
-        return Ok(Id);
+        return Ok(id);
     }
-
-    [HttpPut("{Id:int}")]
-    public IActionResult UpsertMeal(int Id, UpsertMealDto request)
+    
+    [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public IActionResult DeleteMeal(int id)
     {
-        return Ok(request);
-    }
-
-    [HttpDelete("{Id:int}")]
-    public IActionResult DeleteMeal(int Id)
-    {
-        return Ok(Id);
+        return Ok(id);
     }
 }
