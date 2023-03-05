@@ -1,18 +1,16 @@
+using AutoMapper;
 using MealDiary.API.Data;
 using MealDiary.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MealDiary.API.Services;
 
-public class UserService : IUserService
+public class UserService : BaseService, IUserService
 {
-    private readonly DataContext _context;
-    
-    public UserService(DataContext context)
+    public UserService(DataContext context, IMapper mapper) : base(context, mapper)
     {
-        _context = context;
     }
-
+    
     public async Task<IEnumerable<User?>> GetAllUsers()
     {
         return await _context.Users.ToListAsync();

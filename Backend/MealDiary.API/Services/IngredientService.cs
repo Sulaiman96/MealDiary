@@ -1,6 +1,26 @@
+using AutoMapper;
+using MealDiary.API.Data;
+using MealDiary.API.DTOs;
+
 namespace MealDiary.API.Services;
 
-public class IngredientService
+public class IngredientService : BaseService, IIngredientService
 {
-    
+    public IngredientService(DataContext context, IMapper mapper) : base(context, mapper)
+    {
+    }
+    public IngredientResponse CreateIngredient(IngredientRequest ingredientRequest)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<IngredientResponse> GetIngredients()
+    {
+        throw new NotImplementedException();
+    }
+
+    public IngredientResponse GetIngredient(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

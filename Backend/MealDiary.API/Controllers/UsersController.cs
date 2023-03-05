@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
 using MealDiary.API.Entities;
 using MealDiary.API.Services;
 using Microsoft.AspNetCore.Mvc;

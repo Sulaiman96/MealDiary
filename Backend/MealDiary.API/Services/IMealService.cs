@@ -4,8 +4,8 @@ namespace MealDiary.API.Services;
 
 public interface IMealService
 {
-    public MealResponse CreateMeal(MealRequest mealRequest);
-    public bool DeleteMeal(MealRequest mealRequest);
-    public MealResponse GetMealById(int id);
-    public IEnumerable<MealResponse> GetMeals();
+    public Task<MealResponse> CreateMeal(MealRequest mealRequest);
+    public Task<bool> DeleteMeal(MealRequest mealRequest);
+    public Task<MealResponse> GetMealById(int id);
+    public Task<IEnumerable<MealResponse>> GetMeals();
 }

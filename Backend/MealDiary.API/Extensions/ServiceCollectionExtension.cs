@@ -8,5 +8,7 @@ public static class ServiceCollectionExtension
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IMealService, MealService>();
+        services.AddScoped<IIngredientService, IngredientService>();
+        
     }
 }
