@@ -1,7 +1,7 @@
 using AutoMapper;
 using MealDiary.API.Data;
 using MealDiary.API.Extensions;
-using MealDiary.API.Mapper;
+using MealDiary.API.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
-    app.UseCors(b => b.AllowAnyHeader().WithOrigins("http://localhost:4200"));
+    app.UseCors(b => b.AllowAnyHeader().WithOrigins("https://localhost:4200"));
     app.MapControllers();
     app.Run();
 }

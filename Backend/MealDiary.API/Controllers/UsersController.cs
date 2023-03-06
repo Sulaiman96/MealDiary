@@ -1,11 +1,11 @@
+using MealDiary.API.DTOs.Requests;
 using MealDiary.API.Entities;
 using MealDiary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
+public class UsersController : BaseApiController
 {
     private readonly IUserService _userService;
 
@@ -32,32 +32,27 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    // [HttpPost("register")]
-    // public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
-    // {
-    //     // try
-    //     // {
-    //     //     var registeredUser = await _mealDiaryDatabase.RegisterUser(HashedUser(registerDto));
-    //     //     return CreatedAtAction(nameof(Login), registeredUser);
-    //     // }
-    //     // catch (Exception exception)
-    //     // {
-    //     //     return BadRequest(exception.Message.Contains("unique_email")
-    //     //         ? "Email already exists"
-    //     //         : "An error occurred while registering the user");
-    //     // }
-    //     return Ok();
-    // }
-    //
-    // private static UserDb HashedUser(RegisterDto userDto)
-    // {
-    //     using var hmac = new HMACSHA512();
-    //     var user = new UserDb()
-    //     {
-    //         Email = userDto.Email.ToLower(),
-    //         PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(userDto.Password)),
-    //         PasswordSalt = hmac.Key
-    //     };
-    //     return user;
-    // }
+    [HttpPost("register")]
+    public async Task<ActionResult<User>> Register(RegisterRequest registerRequest)
+    {
+        if (await _userService.UserExists(registerRequest.UserName))
+            return BadRequest("Username Already Exists");
+        
+        var registeredUser = await _userService.CreateUser(registerRequest);
+        return Ok(registeredUser);
+    }
+
+    [HttpPost("login")]
+    public async Task<ActionResult<User>> Login(LoginRequest loginRequest)
+    {
+        if (!await _userService.UserExists(loginRequest.UserName))
+            return Unauthorized("Username Does Not Exist");
+
+        var user = await _userService.Login(loginRequest);
+
+        if (user == null)
+            return Unauthorized("Password Is Wrong");
+
+        return user;
+    }
 }

@@ -1,11 +1,12 @@
 using MealDiary.API.DTOs;
+using MealDiary.API.DTOs.Requests;
+using MealDiary.API.DTOs.Responses;
 using MealDiary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
-[Route("api/[controller]")]
-public class MealController : ControllerBase
+public class MealController : BaseApiController
 {
     private readonly IMealService _mealService;
     public MealController(IMealService mealService)

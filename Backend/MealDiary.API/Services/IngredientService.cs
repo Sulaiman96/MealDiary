@@ -1,6 +1,8 @@
 using AutoMapper;
 using MealDiary.API.Data;
 using MealDiary.API.DTOs;
+using MealDiary.API.DTOs.Requests;
+using MealDiary.API.DTOs.Responses;
 
 namespace MealDiary.API.Services;
 

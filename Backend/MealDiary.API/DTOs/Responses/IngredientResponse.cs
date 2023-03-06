@@ -1,4 +1,4 @@
-namespace MealDiary.API.DTOs;
+namespace MealDiary.API.DTOs.Responses;
 
 public class IngredientResponse
 {
