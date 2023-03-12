@@ -4,6 +4,7 @@ using AutoMapper;
 using MealDiary.API.Data;
 using MealDiary.API.DTOs;
 using MealDiary.API.DTOs.Requests;
+using MealDiary.API.DTOs.Responses;
 using MealDiary.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +12,10 @@ namespace MealDiary.API.Services;
 
 public class UserService : BaseService, IUserService
 {
-    public UserService(DataContext context, IMapper mapper) : base(context, mapper)
+    private readonly ITokenService _tokenService;
+    public UserService(DataContext context, IMapper mapper, ITokenService tokenService) : base(context, mapper)
     {
+        _tokenService = tokenService;
     }
     
     public async Task<IEnumerable<User?>> GetAllUsers()
@@ -25,17 +28,21 @@ public class UserService : BaseService, IUserService
         return await _context.Users.FindAsync(id);
     }
 
-    public async Task<User> CreateUser(RegisterRequest registerRequest)
+    public async Task<UserResponse> CreateUser(RegisterRequest registerRequest)
     {
         var hashedUser = HashedUser(registerRequest.UserName, registerRequest.Password);
         
         _context.Users.Add(hashedUser);
         await _context.SaveChangesAsync();
         
-        return hashedUser;
+        return new UserResponse
+        {
+            UserName = hashedUser.UserName,
+            Token = _tokenService.CreateToken(hashedUser)
+        };
     }
 
-    public async Task<User?> Login(LoginRequest loginRequest)
+    public async Task<UserResponse?> Login(LoginRequest loginRequest)
     {
         var user = await _context.Users.FirstAsync(x => x.UserName == loginRequest.UserName.ToLower());
         
@@ -43,7 +50,12 @@ public class UserService : BaseService, IUserService
         var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginRequest.Password));
 
         return computedHash.Where((t, i) => t != user.PasswordHash[i]).Any() 
-            ? null : user;
+            ? null 
+            : new UserResponse 
+            {
+                UserName = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            };
     }
 
     private static User HashedUser(string username, string password)

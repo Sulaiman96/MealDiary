@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace MealDiary.API.Entities;
 
 public class User

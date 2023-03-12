@@ -1,31 +1,21 @@
-using AutoMapper;
-using MealDiary.API.Data;
+using System.Text;
 using MealDiary.API.Extensions;
-using MealDiary.API.Mappings;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddControllers();
-    builder.Services.AddDbContext<DataContext>(options =>
-    {
-        options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-    });
-
-    var mapperConfig = new MapperConfiguration(mc =>
-    {
-        mc.AddProfile(new MappingProfile());
-    });
-    builder.Services.AddSingleton(mapperConfig.CreateMapper());
     builder.Services.AddCors();
-    
-    builder.Services.RegisterServices();
+    builder.Services.AddApplicationServices(builder.Configuration);
+    builder.Services.AddIdentityServices(builder.Configuration);
 }
-
 
 var app = builder.Build();
 {
     app.UseCors(b => b.AllowAnyHeader().WithOrigins("https://localhost:4200"));
+    app.UseAuthentication();
+    app.UseAuthorization();
     app.MapControllers();
     app.Run();
 }

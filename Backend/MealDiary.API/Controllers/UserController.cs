@@ -1,19 +1,22 @@
 using MealDiary.API.DTOs.Requests;
+using MealDiary.API.DTOs.Responses;
 using MealDiary.API.Entities;
 using MealDiary.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
-public class UsersController : BaseApiController
+public class UserController : BaseApiController
 {
     private readonly IUserService _userService;
 
-    public UsersController(IUserService userService)
+    public UserController(IUserService userService)
     {
         _userService = userService;
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> Get()
     {
@@ -22,7 +25,8 @@ public class UsersController : BaseApiController
             return NotFound("No Users Found");
         return Ok(users);
     }
-
+    
+    [Authorize]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<User>> GetUser(int id)
     {
@@ -33,7 +37,7 @@ public class UsersController : BaseApiController
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult<User>> Register(RegisterRequest registerRequest)
+    public async Task<ActionResult<UserResponse>> Register(RegisterRequest registerRequest)
     {
         if (await _userService.UserExists(registerRequest.UserName))
             return BadRequest("Username Already Exists");
@@ -43,7 +47,7 @@ public class UsersController : BaseApiController
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<User>> Login(LoginRequest loginRequest)
+    public async Task<ActionResult<UserResponse>> Login(LoginRequest loginRequest)
     {
         if (!await _userService.UserExists(loginRequest.UserName))
             return Unauthorized("Username Does Not Exist");
