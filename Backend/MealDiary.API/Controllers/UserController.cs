@@ -15,8 +15,7 @@ public class UserController : BaseApiController
     {
         _userService = userService;
     }
-
-    [Authorize]
+    
     [HttpGet]
     public async Task<ActionResult<IEnumerable<User>>> Get()
     {

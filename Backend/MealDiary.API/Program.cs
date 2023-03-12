@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
-    app.UseCors(b => b.AllowAnyHeader().WithOrigins("https://localhost:4200"));
+    app.UseCors(b => b.AllowAnyHeader().WithOrigins("https://localhost:4200", "http://localhost:4200"));
     app.UseAuthentication();
     app.UseAuthorization();
     app.MapControllers();
