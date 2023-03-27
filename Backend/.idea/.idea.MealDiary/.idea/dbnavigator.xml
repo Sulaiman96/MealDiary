@@ -16,6 +16,9 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.ExecutionManager">
+    <retain-sticky-names value="false" />
+  </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d65597e5-e97a-42b2-993d-543732ae8433/console_1.sql" connection-id="d8c32084-0834-45e0-913d-0f7abdaba592" session-id="MAIN" current-schema="postgres" />
     <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d65597e5-e97a-42b2-993d-543732ae8433/console.sql" connection-id="d8c32084-0834-45e0-913d-0f7abdaba592" session-id="MAIN" current-schema="postgres" />
