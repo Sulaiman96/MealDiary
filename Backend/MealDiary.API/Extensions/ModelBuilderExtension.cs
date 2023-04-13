@@ -42,6 +42,13 @@ public static class ModelBuilderExtension
             .HasMany(mc => mc.Meals)
             .WithOne(m => m.MealCollection)
             .HasForeignKey(m => m.MealCollectionId);
+
+        //Define the one-to-many relationship between Meal and Photo
+        modelBuilder.Entity<Meal>()
+            .HasMany(m => m.Photos)
+            .WithOne(p => p.Meal)
+            .HasForeignKey(p => p.MealId);
+
     }
 
     public static void AddUniqueConstraint(this ModelBuilder modelBuilder)

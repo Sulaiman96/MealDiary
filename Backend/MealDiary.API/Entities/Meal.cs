@@ -24,4 +24,6 @@ public class Meal
 
     public int UserId { get; set; }
     public User User { get; set; }
+    
+    public List<Photo> Photos { get; set; } = new();
 }
