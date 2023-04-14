@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "Burgers",
+    "CreatedOn": "2023-04-10T18:30:00Z",
+    "UserId":1
+  },
+  {
+    "Name": "Vegan",
+    "CreatedOn": "2023-05-10T18:30:00Z",
+    "UserId":2
+  },
+  {
+    "Name": "Vegetarian",
+    "CreatedOn": "2023-07-10T18:30:00Z",
+    "UserId":3
+  },
+  {
+    "Name": "Brunch",
+    "CreatedOn": "2023-01-10T18:30:00Z",
+    "UserId":3
+  }
+]

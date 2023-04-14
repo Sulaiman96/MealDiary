@@ -20,10 +20,9 @@ public class Meal
     public int MealCollectionId { get; set; }
     public MealCollection MealCollection { get; set; }
 
-    public ICollection<MealIngredient> MealIngredients { get; set; }
-
     public int UserId { get; set; }
     public User User { get; set; }
     
+    public ICollection<MealIngredient> MealIngredients { get; set; }
     public List<Photo> Photos { get; set; } = new();
 }

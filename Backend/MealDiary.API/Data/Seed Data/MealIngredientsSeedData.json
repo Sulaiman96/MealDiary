@@ -1,0 +1,34 @@
+[
+  {
+    "MealId":1,
+    "IngredientId":1
+  },
+  {
+    "MealId":1,
+    "IngredientId":2
+  },
+  {
+    "MealId":1,
+    "IngredientId":3
+  },
+  {
+    "MealId":2,
+    "IngredientId":2
+  },
+  {
+    "MealId":2,
+    "IngredientId":4
+  },
+  {
+    "MealId":2,
+    "IngredientId":5
+  },
+  {
+    "MealId":3,
+    "IngredientId":3
+  },
+  {
+    "MealId":3,
+    "IngredientId":5
+  }
+]
