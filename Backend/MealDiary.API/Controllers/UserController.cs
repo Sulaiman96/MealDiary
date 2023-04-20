@@ -1,61 +1,42 @@
-using MealDiary.API.DTOs.Requests;
+using AutoMapper;
 using MealDiary.API.DTOs.Responses;
-using MealDiary.API.Entities;
 using MealDiary.API.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.API.Controllers;
 
+[Authorize]
 public class UserController : BaseApiController
 {
     private readonly IUserService _userService;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IMapper mapper) : base(mapper)
     {
         _userService = userService;
     }
     
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> Get()
+    public async Task<ActionResult<IEnumerable<UserResponse>>> Get()
     {
-        var users = await _userService.GetAllUsers();
+        var users = await _userService.GetAllUsersAsync();
         if (!users.Any())
             return NotFound("No Users Found");
-        return Ok(users);
+        
+        var usersToReturn = _mapper.Map<IEnumerable<UserResponse>>(users);
+        
+        return Ok(usersToReturn);
     }
-    
-    [Authorize]
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<User>> GetUser(int id)
+
+    [HttpGet("{username}")]
+    public async Task<ActionResult<UserResponse>> GetUser(string username)
     {
-        var user = await _userService.GetUser(id);
+        var user = await _userService.GetUserByUsernameAsync(username);
         if (user == null)
             return NotFound();
-        return Ok(user);
-    }
-
-    [HttpPost("register")]
-    public async Task<ActionResult<UserResponse>> Register(RegisterRequest registerRequest)
-    {
-        if (await _userService.UserExists(registerRequest.UserName))
-            return BadRequest("Username Already Exists");
         
-        var registeredUser = await _userService.CreateUser(registerRequest);
-        return Ok(registeredUser);
-    }
-
-    [HttpPost("login")]
-    public async Task<ActionResult<UserResponse>> Login(LoginRequest loginRequest)
-    {
-        if (!await _userService.UserExists(loginRequest.UserName))
-            return Unauthorized("Username Does Not Exist");
-
-        var user = await _userService.Login(loginRequest);
-
-        if (user == null)
-            return Unauthorized("Password Is Wrong");
-
-        return user;
+        var userToReturn = _mapper.Map<UserResponse>(user);
+        
+        return Ok(userToReturn);
     }
 }

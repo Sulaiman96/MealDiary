@@ -24,6 +24,7 @@ public static class ApplicationServiceExtension
         services.AddScoped<IMealService, MealService>();
         services.AddScoped<IIngredientService, IngredientService>();
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IAccountService, AccountService>();
         return services;
     }
 }

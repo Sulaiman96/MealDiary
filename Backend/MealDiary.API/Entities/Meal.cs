@@ -22,7 +22,7 @@ public class Meal
 
     public int UserId { get; set; }
     public User User { get; set; }
-    
-    public ICollection<MealIngredient> MealIngredients { get; set; }
+
+    public ICollection<MealIngredient> Ingredients { get; } = new List<MealIngredient>();
     public List<Photo> Photos { get; set; } = new();
 }

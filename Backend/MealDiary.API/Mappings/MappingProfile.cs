@@ -10,14 +10,36 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Meal, MealResponse>()
-            .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Cuisine, opt => opt.MapFrom(src => src.Cuisine.Name))
-            .ForMember(dest => dest.CollectionName, opt => opt.MapFrom(src => src.MealCollection.Name))
-            .ForMember(dest => dest.Ingredients, opt => opt.MapFrom(src => src.MealIngredients.Select(mi => mi.Ingredient)));
-        
+            .ForMember(dest => dest.CollectionName, 
+                opt => opt.MapFrom(src => src.MealCollection.Name))
+            .ForMember(dest => dest.Cuisine, 
+                opt => opt.MapFrom(src => src.Cuisine.Name))
+            .ForMember(dest => dest.PhotoUrl, 
+                opt => opt.MapFrom(src => src.Photos.FirstOrDefault(p=> p.IsMain).Url));
+
         CreateMap<MealRequest, Meal>()
-            .ForMember(dest => dest.Cuisine, opt => opt.MapFrom(src => new Cuisine { Name = src.Cuisine }))
-            .ForMember(dest => dest.MealCollection, opt => opt.MapFrom(src => new MealCollection { Name = src.CollectionName }))
-            .ForMember(dest => dest.MealIngredients, opt => opt.MapFrom(src => src.Ingredients.Select(i => new MealIngredient { Ingredient = new Ingredient { Name = i.Name}})));
+            .ForMember(dest => dest.Cuisine,
+                opt => opt.MapFrom(src => new Cuisine {Name = src.Cuisine}));
+
+        CreateMap<User, UserResponse>()
+            .ForMember(dest => dest.MealCollections, 
+                opt => opt.MapFrom(src => src.MealCollection.Select(mc => new MealCollectionResponse
+                {
+                    Id = mc.Id,
+                    Name = mc.Name,
+                    CreatedOn = mc.CreatedOn
+                })));
+
+        CreateMap<Photo, PhotoResponse>();
+
+        CreateMap<MealCollection, MealCollectionResponse>();
+
+        CreateMap<Ingredient, IngredientResponse>();
+
+        CreateMap<MealIngredient, IngredientResponse>()
+            .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.Ingredient.Id))
+            .ForMember(dest => dest.Name,
+                opt => opt.MapFrom(src => src.Ingredient.Name));
     }
 }

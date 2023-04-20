@@ -2,5 +2,6 @@ namespace MealDiary.API.DTOs.Responses;
 
 public class IngredientResponse
 {
-    public string Ingredient { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
 }

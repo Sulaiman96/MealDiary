@@ -113,18 +113,18 @@ public class Seed
     {
         if (await context.MealIngredients.AnyAsync())
             return;
-
+    
         var mealIngredientsData = await File.ReadAllTextAsync("Data/Seed Data/MealIngredientsSeedData.json");
-
+    
         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-
+    
         var mealIngredients = JsonSerializer.Deserialize<List<MealIngredient>>(mealIngredientsData, options);
-
+    
         foreach (var mealIngredient in mealIngredients)
         {
             context.MealIngredients.Add(mealIngredient);
         }
-
+    
         await context.SaveChangesAsync();
     }
 }

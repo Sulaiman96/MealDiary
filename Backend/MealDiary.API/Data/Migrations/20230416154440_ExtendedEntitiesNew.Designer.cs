@@ -3,6 +3,7 @@ using System;
 using MealDiary.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,12 +11,29 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealDiary.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230416154440_ExtendedEntitiesNew")]
+    partial class ExtendedEntitiesNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
+
+            modelBuilder.Entity("IngredientMeal", b =>
+                {
+                    b.Property<int>("IngredientsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MealsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("IngredientsId", "MealsId");
+
+                    b.HasIndex("MealsId");
+
+                    b.ToTable("IngredientMeal");
+                });
 
             modelBuilder.Entity("MealDiary.API.Entities.Cuisine", b =>
                 {
@@ -126,21 +144,6 @@ namespace MealDiary.API.Data.Migrations
                     b.ToTable("MealCollections");
                 });
 
-            modelBuilder.Entity("MealDiary.API.Entities.MealIngredient", b =>
-                {
-                    b.Property<int>("MealId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("IngredientId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("MealId", "IngredientId");
-
-                    b.HasIndex("IngredientId");
-
-                    b.ToTable("MealIngredients");
-                });
-
             modelBuilder.Entity("MealDiary.API.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -191,6 +194,21 @@ namespace MealDiary.API.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("IngredientMeal", b =>
+                {
+                    b.HasOne("MealDiary.API.Entities.Ingredient", null)
+                        .WithMany()
+                        .HasForeignKey("IngredientsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MealDiary.API.Entities.Meal", null)
+                        .WithMany()
+                        .HasForeignKey("MealsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MealDiary.API.Entities.Meal", b =>
                 {
                     b.HasOne("MealDiary.API.Entities.Cuisine", "Cuisine")
@@ -229,25 +247,6 @@ namespace MealDiary.API.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MealDiary.API.Entities.MealIngredient", b =>
-                {
-                    b.HasOne("MealDiary.API.Entities.Ingredient", "Ingredient")
-                        .WithMany("Meals")
-                        .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MealDiary.API.Entities.Meal", "Meal")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("MealId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ingredient");
-
-                    b.Navigation("Meal");
-                });
-
             modelBuilder.Entity("MealDiary.API.Entities.Photo", b =>
                 {
                     b.HasOne("MealDiary.API.Entities.Meal", "Meal")
@@ -264,15 +263,8 @@ namespace MealDiary.API.Data.Migrations
                     b.Navigation("Meals");
                 });
 
-            modelBuilder.Entity("MealDiary.API.Entities.Ingredient", b =>
-                {
-                    b.Navigation("Meals");
-                });
-
             modelBuilder.Entity("MealDiary.API.Entities.Meal", b =>
                 {
-                    b.Navigation("Ingredients");
-
                     b.Navigation("Photos");
                 });
 

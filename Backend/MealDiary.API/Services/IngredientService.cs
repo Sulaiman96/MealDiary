@@ -8,7 +8,7 @@ namespace MealDiary.API.Services;
 
 public class IngredientService : BaseService, IIngredientService
 {
-    public IngredientService(DataContext context, IMapper mapper) : base(context, mapper)
+    public IngredientService(DataContext context) : base(context)
     {
     }
     public IngredientResponse CreateIngredient(IngredientRequest ingredientRequest)

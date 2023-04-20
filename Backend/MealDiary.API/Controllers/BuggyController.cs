@@ -1,3 +1,4 @@
+using AutoMapper;
 using MealDiary.API.Data;
 using MealDiary.API.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ public class BuggyController : BaseApiController
 {
     private readonly DataContext _context;
     
-    public BuggyController(DataContext context)
+    public BuggyController(DataContext context, IMapper mapper) : base(mapper)
     {
         _context = context;
     }

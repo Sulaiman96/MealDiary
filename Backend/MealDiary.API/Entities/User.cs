@@ -6,6 +6,6 @@ public class User
     public string UserName { get; set; }
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }
-    public ICollection<Meal> Meals { get; set; }
-    public ICollection<MealCollection> MealCollection { get; set; }
+    public ICollection<Meal> Meals { get; } = new List<Meal>();
+    public ICollection<MealCollection> MealCollection { get; } = new List<MealCollection>();
 }
