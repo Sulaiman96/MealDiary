@@ -20,8 +20,8 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d65597e5-e97a-42b2-993d-543732ae8433/console_1.sql" connection-id="d8c32084-0834-45e0-913d-0f7abdaba592" session-id="MAIN" current-schema="postgres" />
     <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d65597e5-e97a-42b2-993d-543732ae8433/console.sql" connection-id="d8c32084-0834-45e0-913d-0f7abdaba592" session-id="MAIN" current-schema="postgres" />
+    <mapping file-url="file://$APPLICATION_CONFIG_DIR$/consoles/db/d65597e5-e97a-42b2-993d-543732ae8433/console_1.sql" connection-id="d8c32084-0834-45e0-913d-0f7abdaba592" session-id="MAIN" current-schema="postgres" />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -32,13 +32,15 @@
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
           <database-version value="15.1" />
-          <driver-source value="BUILTIN" />
+          <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="5432" />
           <database value="postgres" />
+          <tns-folder value="" />
+          <tns-profile value="" />
           <type value="USER_PASSWORD" />
           <user value="postgres" />
           <deprecated-pwd value="cGFzc3dvcmQ=" />
@@ -78,7 +80,15 @@
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+        <debugger>
+          <compile-dependencies value="true" />
+          <tcp-driver-tunneling value="false" />
+          <tcp-host-address value="" />
+          <tcp-port-from value="4000" />
+          <tcp-port-to value="4999" />
+          <debugger-type value="JDBC" />
+        </debugger>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
           <object-type-filter>
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />
@@ -260,6 +270,7 @@
       <confirmations>
         <save-changes value="false" />
         <revert-changes value="true" />
+        <exit-on-changes value="ASK" />
       </confirmations>
     </code-editor-settings>
     <code-completion-settings>
@@ -458,10 +469,6 @@
         <compile-dependencies value="ASK" />
         <always-show-controls value="false" />
       </compiler>
-      <debugger>
-        <debugger-type value="JDBC" />
-        <use-generic-runners value="true" />
-      </debugger>
     </operation-settings>
     <ddl-file-settings>
       <extensions>
