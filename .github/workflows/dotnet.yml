@@ -24,6 +24,6 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore    
     - name: Build 
-      run: dotnet build Backend/ --no-restore 
+      run: dotnet build Backend/MealDiary.sln --no-restore 
     - name: Test
-      run: dotnet test Backend/ --no-build --verbosity normal 
+      run: dotnet test Backend/MealDiary.sln --no-build --verbosity normal 
