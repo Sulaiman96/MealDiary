@@ -22,7 +22,7 @@ jobs:
     - name: List files in the Backend directory
       run: ls -l Backend/
     - name: Restore Dependencies
-      run: dotnet restore    
+      run: dotnet restore Backend/MealDiary.sln
     - name: Build 
       run: dotnet build Backend/MealDiary.sln --no-restore 
     - name: Test
