@@ -19,9 +19,11 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
-    - name: Install Dependencies
+    - name: List files in the Backend directory
+      run: ls -l Backend/
+    - name: Restore Dependencies
       run: dotnet restore    
     - name: Build 
-      run: dotnet build /Backend --no-restore 
+      run: dotnet build Backend/ --no-restore 
     - name: Test
-      run: dotnet test /Backend --no-build --verbosity normal 
+      run: dotnet test Backend/ --no-build --verbosity normal 
