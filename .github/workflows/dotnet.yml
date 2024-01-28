@@ -5,13 +5,12 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: "main" 
   pull_request:
-    branches: [ "main" ]
+    branches: "main" 
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +19,9 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.x
+    - name: Install Dependencies
+      run: dotnet restore    
     - name: Build 
-      run: dotnet build --no-restore BackEnd/MealDiary.sln
+      run: dotnet build Backend/MealDiary.sln --no-restore 
     - name: Test
-      run: dotnet test --no-build --verbosity normal BackEnd/MealDiary.sln
+      run: dotnet test Backend/MealDiary.sln --no-build --verbosity normal 
