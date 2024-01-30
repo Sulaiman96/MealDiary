@@ -1,0 +1,9 @@
+.Navigationbar {
+    .white-nav-link {
+        color: white !important;
+    }
+
+    .white-nav-link:hover {
+        color: #c1c1c1 !important;
+    }
+}
