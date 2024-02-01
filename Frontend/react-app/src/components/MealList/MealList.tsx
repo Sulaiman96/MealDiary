@@ -4,7 +4,7 @@ import './MealList.css';
 
 interface Props { }
 
-const MealList = (props: Props) => {
+const MealList: React.FC<Props> = (props: Props): JSX.Element => {
     return (
         <div className='center-both-flexbox'>
             <Meal
