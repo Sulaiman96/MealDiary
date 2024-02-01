@@ -9,7 +9,7 @@ interface Props {
     price: number;
 }
 
-const Meal = ({ mealName, restaurant, image, ingredients, price }: Props) => {
+const Meal: React.FC<Props> = ({ mealName, restaurant, image, ingredients, price }: Props): JSX.Element => {
     return (
         <div className='meal'>
             <img
