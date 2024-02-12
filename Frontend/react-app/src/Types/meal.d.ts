@@ -19,7 +19,5 @@ export interface Photos {
 }
 
 export interface Ingredients {
-    string: name
+    name: string
 }
-
-

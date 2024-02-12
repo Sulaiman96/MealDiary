@@ -6,7 +6,7 @@ import Hero from "./components/Hero/hero";
 import { BrowserRouter } from 'react-router-dom';
 import MealList from './components/MealList/MealList';
 import Search from './components/Search/Search';
-import { searchMeal } from './api';
+import { searchMeal, searchMeals } from './api';
 import { Meal } from './Types/meal';
 
 function App() {
@@ -20,12 +20,17 @@ function App() {
     }
 
     const onClickEvent = async (e: SyntheticEvent) => {
-        const result = await searchMeal("Sushi Platter");
+        let result;
+        search.length > 0
+            ? result = await searchMeal(search)
+            : result = await searchMeals();
+
         console.log(result);
         if (typeof result === "string") {
             setServerError(result);
-        } else if (Array.isArray(result.data)) {
-            setMealResult(result.data);
+        } else {
+            const mealsData = Array.isArray(result.data) ? result.data : [result.data];
+            setMealResult(mealsData);
         }
         console.log(setMealResult);
     }
@@ -36,7 +41,8 @@ function App() {
                 <Navigationbar />
                 <Hero />
                 <Search onClickEvent={onClickEvent} search={search} handleChange={handleChange} />
-                <MealList />
+                {serverError && <h1>{serverError}</h1>}
+                <MealList mealResult={mealResult} />
             </div>
         </BrowserRouter>
     );

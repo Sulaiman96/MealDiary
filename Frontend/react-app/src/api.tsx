@@ -2,17 +2,10 @@ import axios from "axios"
 import { User } from "./Types/user"
 import { Meal } from "./Types/meal";
 
-interface UserReponse {
-    data: User[];
-}
-
-interface MealResponse {
-    data: Meal[];
-}
 
 export const searchUser = async (user: string) => {
     try {
-        const data = await axios.get<UserReponse>(
+        const data = await axios.get<User[]>(
             `https://localhost:5001/api/User/${user}`
         );
         return data;
@@ -29,7 +22,7 @@ export const searchUser = async (user: string) => {
 
 export const searchUsers = async () => {
     try {
-        const data = await axios.get<UserReponse>(
+        const data = await axios.get<User[]>(
             `https://localhost:5001/api/User`
         );
         return data;
@@ -46,7 +39,7 @@ export const searchUsers = async () => {
 
 export const searchMeals = async () => {
     try {
-        const data = await axios.get<MealResponse>(
+        const data = await axios.get<Meal[]>(
             `https://localhost:5001/api/Meal`
         );
         return data;
@@ -63,7 +56,7 @@ export const searchMeals = async () => {
 
 export const searchMeal = async (mealName: string) => {
     try {
-        const data = await axios.get<MealResponse>(
+        const data = await axios.get<Meal[]>(
             `https://localhost:5001/api/Meal/${mealName}`
         );
         return data;
