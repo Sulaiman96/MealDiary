@@ -14,12 +14,13 @@ function App() {
     const [mealResult, setMealResult] = useState<Meal[]>([]);
     const [serverError, setServerError] = useState<string>("");
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value)
         console.log(e);
     }
 
-    const onClickEvent = async (e: SyntheticEvent) => {
+    const onSearchSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
         let result;
         search.length > 0
             ? result = await searchMeal(search)
@@ -40,7 +41,7 @@ function App() {
             <div className="App">
                 <Navigationbar />
                 <Hero />
-                <Search onClickEvent={onClickEvent} search={search} handleChange={handleChange} />
+                <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
                 {serverError && <h1>{serverError}</h1>}
                 <MealList mealResult={mealResult} />
             </div>
