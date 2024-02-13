@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API", "MealDiary.API\MealDiary.API.csproj", "{C6DAC85E-2A20-4665-8F21-1FA60DE4B02F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Core", "MealDiary.Core\MealDiary.Core.csproj", "{C6DAC85E-2A20-4665-8F21-1FA60DE4B02F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Data", "MealDiary.Data\MealDiary.Data.csproj", "{0BE4056E-0DFE-4D67-A504-AB1071255D57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API.Tests.Unit", "MealDiary.API.Tests.Unit\MealDiary.API.Tests.Unit.csproj", "{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Core.Tests.Unit", "MealDiary.Core.Tests.Unit\MealDiary.Core.Tests.Unit.csproj", "{C88ABE42-C5DC-4E94-87AA-13BC40DFAB23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.API.Tests.Integration", "MealDiary.API.Tests.Integration\MealDiary.API.Tests.Integration.csproj", "{C75CE9D3-01EA-4A04-A68E-CF172296746D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDiary.Core.Tests.Integration", "MealDiary.Core.Tests.Integration\MealDiary.Core.Tests.Integration.csproj", "{C75CE9D3-01EA-4A04-A68E-CF172296746D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
