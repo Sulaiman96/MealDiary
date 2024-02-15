@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace MealDiary.Core.Data;
 
 //Note To Self: All of these implementations are simply due to wanting to use integer as key from Identity Provider.
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+public class ApplicationDbContext(DbContextOptions options)
     : IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>, AppUserRole,
         IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>(options)
 {

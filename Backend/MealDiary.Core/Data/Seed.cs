@@ -1,130 +1,183 @@
-// using System.Security.Cryptography;
-// using System.Text;
-// using System.Text.Json;
-// using MealDiary.Core.Entities;
-// using Microsoft.EntityFrameworkCore;
-//
-// namespace MealDiary.Core.Data;
-//
-// public class Seed
-// {
-//     public static async Task SeedCuisine(DataContext context)
-//     {
-//         if (await context.Cuisines.AnyAsync())
-//             return;
-//
-//         var cuisineData = await File.ReadAllTextAsync("Data/Seed Data/CuisineSeedData.json");
-//
-//         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//
-//         var cuisines = JsonSerializer.Deserialize<List<Cuisine>>(cuisineData, options);
-//
-//         foreach (var cuisine in cuisines)
-//         {
-//             context.Cuisines.Add(cuisine);
-//         }
-//
-//         await context.SaveChangesAsync();
-//     }
-//
-//     public static async Task SeedIngredient(DataContext context)
-//     {
-//         if (await context.Ingredients.AnyAsync())
-//             return;
-//
-//         var ingredientData = await File.ReadAllTextAsync("Data/Seed Data/IngredientSeedData.json");
-//
-//         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//
-//         var ingredients = JsonSerializer.Deserialize<List<Ingredient>>(ingredientData, options);
-//
-//         foreach (var ingredient in ingredients)
-//         {
-//             context.Ingredients.Add(ingredient);
-//         }
-//
-//         await context.SaveChangesAsync();
-//     }
-//
-//     // public static async Task SeedUser(DataContext context)
-//     // {
-//     //     if (await context.Users.AnyAsync())
-//     //         return;
-//     //
-//     //     var userData = await File.ReadAllTextAsync("Data/Seed Data/UserSeedData.json");
-//     //
-//     //     var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//     //
-//     //     var users = JsonSerializer.Deserialize<List<User>>(userData, options);
-//     //
-//     //     foreach (var user in users)
-//     //     {
-//     //         using var hmac = new HMACSHA512();
-//     //
-//     //         user.UserName = user.UserName.ToLower();
-//     //         user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd"));
-//     //         user.PasswordSalt = hmac.Key;
-//     //         
-//     //         context.Users.Add(user);
-//     //     }
-//     //
-//     //     await context.SaveChangesAsync();
-//     // }
-//     
-//     public static async Task SeedMealCollection(DataContext context)
-//     {
-//         if (await context.MealCollections.AnyAsync())
-//             return;
-//
-//         var mealCollectionData = await File.ReadAllTextAsync("Data/Seed Data/MealCollectionSeedData.json");
-//
-//         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//
-//         var mealCollections = JsonSerializer.Deserialize<List<MealCollection>>(mealCollectionData, options);
-//
-//         foreach (var mealCollection in mealCollections)
-//         {
-//             context.MealCollections.Add(mealCollection);
-//         }
-//
-//         await context.SaveChangesAsync();
-//     }
-//     
-//     public static async Task SeedMeal(DataContext context)
-//     {
-//         if (await context.Meals.AnyAsync())
-//             return;
-//
-//         var mealData = await File.ReadAllTextAsync("Data/Seed Data/MealSeedData.json");
-//
-//         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//
-//         var meals = JsonSerializer.Deserialize<List<Meal>>(mealData, options);
-//
-//         foreach (var meal in meals)
-//         {
-//             context.Meals.Add(meal);
-//         }
-//
-//         await context.SaveChangesAsync();
-//     }
-//     
-//     public static async Task SeedMealIngredients(DataContext context)
-//     {
-//         if (await context.MealIngredients.AnyAsync())
-//             return;
-//     
-//         var mealIngredientsData = await File.ReadAllTextAsync("Data/Seed Data/MealIngredientsSeedData.json");
-//     
-//         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-//     
-//         var mealIngredients = JsonSerializer.Deserialize<List<MealIngredient>>(mealIngredientsData, options);
-//     
-//         foreach (var mealIngredient in mealIngredients)
-//         {
-//             context.MealIngredients.Add(mealIngredient);
-//         }
-//     
-//         await context.SaveChangesAsync();
-//     }
-// }
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using MealDiary.Core.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+namespace MealDiary.Core.Data;
+
+public class Seed
+{
+    private static readonly JsonSerializerOptions Options = new()
+    {
+        PropertyNameCaseInsensitive = true,
+        Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) },
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
+    
+    public static async Task SeedCuisine(ApplicationDbContext context)
+    {
+        if (await context.Cuisines.AnyAsync())
+            return;
+
+        var cuisineData = await File.ReadAllTextAsync("Data/Seed Data/CuisineSeedData.json");
+
+        var cuisines = JsonSerializer.Deserialize<List<Cuisine>>(cuisineData, Options);
+
+        foreach (var cuisine in cuisines)
+        {
+            context.Cuisines.Add(cuisine);
+        }
+
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedIngredient(ApplicationDbContext context)
+    {
+        if (await context.Ingredients.AnyAsync())
+            return;
+
+        var ingredientData = await File.ReadAllTextAsync("Data/Seed Data/IngredientSeedData.json");
+
+        var ingredients = JsonSerializer.Deserialize<List<Ingredient>>(ingredientData, Options);
+
+        foreach (var ingredient in ingredients)
+        {
+            context.Ingredients.Add(ingredient);
+        }
+
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedUser(UserManager<AppUser> userManager)
+    {
+        if (await userManager.Users.AnyAsync())
+            return;
+    
+        var userData = await File.ReadAllTextAsync("Data/Seed Data/UserSeedData.json");
+    
+        JsonSerializerOptions options = new() {PropertyNameCaseInsensitive = true};
+        
+        var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+    
+        foreach (var user in users)
+        {
+            user.UserName = user.UserName?.ToLower();
+            user.Email = user.Email?.ToLower();
+            
+            await userManager.CreateAsync(user, "Password1");
+        }
+    }
+    
+    public static async Task SeedMealCollection(ApplicationDbContext context)
+    {
+        if (await context.MealCollections.AnyAsync())
+            return;
+
+        var mealCollectionData = await File.ReadAllTextAsync("Data/Seed Data/MealCollectionSeedData.json");
+
+        var mealCollections = JsonSerializer.Deserialize<List<MealCollection>>(mealCollectionData, Options);
+
+        foreach (var mealCollection in mealCollections)
+        {
+            context.MealCollections.Add(mealCollection);
+        }
+
+        await context.SaveChangesAsync();
+    }
+    
+    public static async Task SeedMeal(ApplicationDbContext context)
+    {
+        if (await context.Meals.AnyAsync())
+            return;
+
+        var mealData = await File.ReadAllTextAsync("Data/Seed Data/MealSeedData.json");
+        
+        var meals = JsonSerializer.Deserialize<List<Meal>>(mealData, Options);
+
+        foreach (var meal in meals)
+        {
+            context.Meals.Add(meal);
+        }
+
+        await context.SaveChangesAsync();
+    }
+    
+    public static async Task SeedMealIngredients(ApplicationDbContext context)
+    {
+        if (await context.MealIngredients.AnyAsync())
+            return;
+    
+        var mealIngredientsData = await File.ReadAllTextAsync("Data/Seed Data/MealIngredientsSeedData.json");
+    
+        var mealIngredients = JsonSerializer.Deserialize<List<MealIngredient>>(mealIngredientsData, Options);
+    
+        foreach (var mealIngredient in mealIngredients)
+        {
+            context.MealIngredients.Add(mealIngredient);
+        }
+    
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedMealMealCollections(ApplicationDbContext context)
+    {
+        if (await context.MealMealCollections.AnyAsync())
+            return;
+    
+        var mealMealCollectionData = await File.ReadAllTextAsync("Data/Seed Data/MealMealCollectionSeedData.json");
+    
+        var mealMealCollections = JsonSerializer.Deserialize<List<MealMealCollection>>(mealMealCollectionData, Options);
+    
+        foreach (var mealMealcollection in mealMealCollections)
+        {
+            context.MealMealCollections.Add(mealMealcollection);
+        }
+    
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedPhoto(ApplicationDbContext context)
+    {
+        if (await context.Photos.AnyAsync())
+            return;
+
+        var photoData = await File.ReadAllTextAsync("Data/Seed Data/PhotoSeedData.json");
+
+        var photos = JsonSerializer.Deserialize<List<Photo>>(photoData, Options);
+
+        foreach (var photo in photos)
+        {
+            context.Photos.Add(photo);
+        }
+
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedRestaurant(ApplicationDbContext context)
+    {
+        if (await context.Restaurants.AnyAsync())
+            return;
+
+        var restaurantData = await File.ReadAllTextAsync("Data/Seed Data/RestaurantSeedData.json");
+
+        var restaurants = JsonSerializer.Deserialize<List<Restaurant>>(restaurantData, Options);
+
+        foreach (var restaurant in restaurants)
+        {
+            context.Restaurants.Add(restaurant);
+        }
+
+        await context.SaveChangesAsync();
+    }
+
+    public static async Task SeedUserRelationships(ApplicationDbContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+
+}

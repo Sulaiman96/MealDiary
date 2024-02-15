@@ -1,0 +1,9 @@
+[
+  { "MealId": 1, "MealCollectionId": 1 },
+  { "MealId": 2, "MealCollectionId": 2 },
+  { "MealId": 3, "MealCollectionId": 3 },
+  { "MealId": 4, "MealCollectionId": 4 },
+  { "MealId": 5, "MealCollectionId": 2 }, 
+  { "MealId": 6, "MealCollectionId": 1 }, 
+  { "MealId": 7, "MealCollectionId": 3 }  
+]

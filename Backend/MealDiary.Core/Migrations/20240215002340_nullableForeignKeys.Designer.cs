@@ -4,6 +4,7 @@ using MealDiary.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealDiary.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240215002340_nullableForeignKeys")]
+    partial class nullableForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -533,13 +536,13 @@ namespace MealDiary.Core.Migrations
             modelBuilder.Entity("MealDiary.Core.Data.Models.MealIngredient", b =>
                 {
                     b.HasOne("MealDiary.Core.Data.Models.Ingredient", "Ingredient")
-                        .WithMany("MealIngredients")
+                        .WithMany("Meals")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MealDiary.Core.Data.Models.Meal", "Meal")
-                        .WithMany("MealIngredients")
+                        .WithMany("Ingredients")
                         .HasForeignKey("MealId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -696,14 +699,14 @@ namespace MealDiary.Core.Migrations
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Ingredient", b =>
                 {
-                    b.Navigation("MealIngredients");
+                    b.Navigation("Meals");
                 });
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Meal", b =>
                 {
-                    b.Navigation("MealCollections");
+                    b.Navigation("Ingredients");
 
-                    b.Navigation("MealIngredients");
+                    b.Navigation("MealCollections");
 
                     b.Navigation("Photos");
 

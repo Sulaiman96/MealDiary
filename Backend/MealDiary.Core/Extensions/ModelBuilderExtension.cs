@@ -48,13 +48,13 @@ public static class ModelBuilderExtension
 
         modelBuilder.Entity<MealIngredient>()
             .HasOne(mi => mi.Meal)
-            .WithMany(m => m.Ingredients)
+            .WithMany(m => m.MealIngredients)
             .HasForeignKey(mi => mi.MealId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<MealIngredient>()
             .HasOne(mi => mi.Ingredient)
-            .WithMany(i => i.Meals)
+            .WithMany(i => i.MealIngredients)
             .HasForeignKey(mi => mi.IngredientId)
             .OnDelete(DeleteBehavior.Restrict);
 
