@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealDiary.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240215002340_nullableForeignKeys")]
-    partial class nullableForeignKeys
+    [Migration("20240219215151_InitialCreate3")]
+    partial class InitialCreate3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,6 +186,9 @@ namespace MealDiary.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -211,16 +214,13 @@ namespace MealDiary.Core.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("CuisineId");
 
                     b.HasIndex("RestaurantId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Meals");
                 });
@@ -242,9 +242,6 @@ namespace MealDiary.Core.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -499,6 +496,12 @@ namespace MealDiary.Core.Migrations
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Meal", b =>
                 {
+                    b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
+                        .WithMany("Meals")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("MealDiary.Core.Data.Models.Cuisine", "Cuisine")
                         .WithMany("Meals")
                         .HasForeignKey("CuisineId")
@@ -508,12 +511,6 @@ namespace MealDiary.Core.Migrations
                         .WithMany("Meals")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
-                        .WithMany("Meals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
 
                     b.Navigation("AppUser");
 
@@ -527,7 +524,7 @@ namespace MealDiary.Core.Migrations
                     b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
                         .WithMany("MealCollection")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -536,13 +533,13 @@ namespace MealDiary.Core.Migrations
             modelBuilder.Entity("MealDiary.Core.Data.Models.MealIngredient", b =>
                 {
                     b.HasOne("MealDiary.Core.Data.Models.Ingredient", "Ingredient")
-                        .WithMany("Meals")
+                        .WithMany("MealIngredients")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MealDiary.Core.Data.Models.Meal", "Meal")
-                        .WithMany("Ingredients")
+                        .WithMany("MealIngredients")
                         .HasForeignKey("MealId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -699,14 +696,14 @@ namespace MealDiary.Core.Migrations
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Ingredient", b =>
                 {
-                    b.Navigation("Meals");
+                    b.Navigation("MealIngredients");
                 });
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Meal", b =>
                 {
-                    b.Navigation("Ingredients");
-
                     b.Navigation("MealCollections");
+
+                    b.Navigation("MealIngredients");
 
                     b.Navigation("Photos");
 

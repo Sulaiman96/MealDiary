@@ -7,7 +7,7 @@
     "LastModified": "2023-02-15T00:00:00Z",
     "Rating": 5,
     "RestaurantId": 1,
-    "UserId": 2,
+    "AppUserId": 2,
     "CuisineId": 8
   },
   {
@@ -18,7 +18,7 @@
     "LastModified": "2023-02-16T00:00:00Z",
     "Rating": 4,
     "RestaurantId": 2,
-    "UserId": 1,
+    "AppUserId": 1,
     "CuisineId": 4
   },
   {
@@ -29,7 +29,7 @@
     "LastModified": "2023-02-17T00:00:00Z",
     "Rating": 5,
     "RestaurantId": 3,
-    "UserId": 1,
+    "AppUserId": 1,
     "CuisineId": 2
   },
   {
@@ -40,7 +40,7 @@
     "LastModified": "2023-02-18T00:00:00Z",
     "Rating": 4,
     "RestaurantId": 4,
-    "UserId": 1,
+    "AppUserId": 1,
     "CuisineId": 1
   },
   {
@@ -51,7 +51,7 @@
     "LastModified": "2023-02-19T00:00:00Z",
     "Rating": 5,
     "RestaurantId": 5,
-    "UserId": 2,
+    "AppUserId": 2,
     "CuisineId": 4
   },
   {
@@ -62,7 +62,7 @@
     "LastModified": "2023-02-20T00:00:00Z",
     "Rating": 3,
     "RestaurantId": 6,
-    "UserId": 2,
+    "AppUserId": 2,
     "CuisineId": 3
   },
   {
@@ -73,7 +73,7 @@
     "LastModified": "2023-02-21T00:00:00Z",
     "Rating": 5,
     "RestaurantId": 7,
-    "UserId": 2,
+    "AppUserId": 2,
     "CuisineId": 7
   }
 ]

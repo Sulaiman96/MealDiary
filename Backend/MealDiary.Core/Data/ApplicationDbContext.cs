@@ -30,4 +30,28 @@ public class ApplicationDbContext(DbContextOptions options)
         
         modelBuilder.AddUniqueConstraint();
     }
+    
+    public void ResetAutoIncrementValues()
+    {
+        var tables = new[]
+        {
+            "Cuisines", 
+            "Ingredients", 
+            "MealCollections",
+            "Meals",
+            "Photos",
+            "Restaurants",
+            "SharedMealCollections",
+            "SharedMeals",
+            "AspNetUsers",
+            "AspNetUserClaims",
+            "AspNetRoles",
+            "AspNetRoleClaims"
+        }; 
+        
+        foreach (var table in tables)
+        {
+            Database.ExecuteSqlRaw($"DBCC CHECKIDENT ('{table}', RESEED, 1);");
+        }
+    }
 }

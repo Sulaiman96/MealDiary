@@ -28,20 +28,19 @@ var app = builder.Build();
         var context = services.GetRequiredService<ApplicationDbContext>();
         var userManager = services.GetRequiredService<UserManager<AppUser>>();
         await context.Database.MigrateAsync();
+        Seed.ResetAutoIncrement(context);
         
         await Seed.SeedUser(userManager);
         await Seed.SeedRestaurant(context);
         await Seed.SeedCuisine(context);
         await Seed.SeedIngredient(context);
-        await Seed.SeedMealCollection(context);
-        await Seed.SeedMeal(context);
+        await Seed.SeedMealCollection(context, userManager);
+        await Seed.SeedMeal(context, userManager);
         await Seed.SeedPhoto(context);
         
         //With Relationships
         await Seed.SeedMealIngredients(context);
-        await Seed.SeedMealMealCollections(context);
-        
-        // await Seed.SeedUserRelationships(context);
+        await Seed.SeedMealMealCollections(context); // PROBLEM
 
     }
     catch (Exception ex)

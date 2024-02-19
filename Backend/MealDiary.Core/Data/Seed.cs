@@ -58,10 +58,8 @@ public class Seed
             return;
     
         var userData = await File.ReadAllTextAsync("Data/Seed Data/UserSeedData.json");
-    
-        JsonSerializerOptions options = new() {PropertyNameCaseInsensitive = true};
         
-        var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+        var users = JsonSerializer.Deserialize<List<AppUser>>(userData, Options);
     
         foreach (var user in users)
         {
@@ -72,7 +70,7 @@ public class Seed
         }
     }
     
-    public static async Task SeedMealCollection(ApplicationDbContext context)
+    public static async Task SeedMealCollection(ApplicationDbContext context, UserManager<AppUser> userManager)
     {
         if (await context.MealCollections.AnyAsync())
             return;
@@ -83,13 +81,18 @@ public class Seed
 
         foreach (var mealCollection in mealCollections)
         {
+            var existingUser = userManager.Users.FirstOrDefault(user => user.Id == mealCollection.AppUserId);
+            if (existingUser != null)
+            {
+                mealCollection.AppUser = existingUser;
+            }
             context.MealCollections.Add(mealCollection);
         }
 
         await context.SaveChangesAsync();
     }
     
-    public static async Task SeedMeal(ApplicationDbContext context)
+    public static async Task SeedMeal(ApplicationDbContext context, UserManager<AppUser> userManager )
     {
         if (await context.Meals.AnyAsync())
             return;
@@ -100,6 +103,11 @@ public class Seed
 
         foreach (var meal in meals)
         {
+            var existingUser = userManager.Users.FirstOrDefault(user => user.Id == meal.AppUserId);
+            if (existingUser != null)
+            {
+                meal.AppUser = existingUser;
+            }
             context.Meals.Add(meal);
         }
 
@@ -134,7 +142,18 @@ public class Seed
     
         foreach (var mealMealcollection in mealMealCollections)
         {
-            context.MealMealCollections.Add(mealMealcollection);
+            var meal = await context.Meals.FindAsync(mealMealcollection.MealId);
+            var mealCollection = await context.MealCollections.FindAsync(mealMealcollection.MealCollectionId);
+            if (meal != null && mealCollection != null)
+            {
+                mealMealcollection.Meal = meal;
+                mealMealcollection.MealCollection = mealCollection;
+                context.MealMealCollections.Add(mealMealcollection);
+            }
+            else
+            {
+                Console.WriteLine($"Skipping MealMealCollection with MealId {mealMealcollection.MealId} and MealCollectionId {mealMealcollection.MealCollectionId} due to missing Meal or MealCollection.");
+            }
         }
     
         await context.SaveChangesAsync();
@@ -179,5 +198,9 @@ public class Seed
         throw new NotImplementedException();
     }
 
+    public static void ResetAutoIncrement(ApplicationDbContext context)
+    {
+        context.ResetAutoIncrementValues();
+    }
 
 }

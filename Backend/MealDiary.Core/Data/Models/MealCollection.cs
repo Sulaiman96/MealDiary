@@ -6,8 +6,8 @@ public class MealCollection
     public string Name { get; set; } = string.Empty;
     public DateTime CreatedOn { get; set; }
     
-    public int UserId { get; set; }
-    public AppUser AppUser { get; set; } = new();
+    public int AppUserId { get; set; }
+    public AppUser AppUser { get; set; }
     
     public ICollection<MealMealCollection> Meals { get; } = new List<MealMealCollection>();
     public ICollection<SharedMealCollection> SharedMealCollections { get; set; } = new List<SharedMealCollection>();

@@ -16,7 +16,7 @@ public class Meal
     public int Rating { get; set; }
     public int? RestaurantId { get; set; }
     public Restaurant? Restaurant { get; set; }
-    public int UserId { get; set; }
+    public int AppUserId { get; set; }
     public AppUser AppUser { get; set; } = new();
     public int? CuisineId { get; set; }
     public Cuisine? Cuisine { get; set; }

@@ -183,6 +183,9 @@ namespace MealDiary.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -208,16 +211,13 @@ namespace MealDiary.Core.Migrations
                     b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("CuisineId");
 
                     b.HasIndex("RestaurantId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Meals");
                 });
@@ -239,9 +239,6 @@ namespace MealDiary.Core.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -496,6 +493,12 @@ namespace MealDiary.Core.Migrations
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Meal", b =>
                 {
+                    b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
+                        .WithMany("Meals")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("MealDiary.Core.Data.Models.Cuisine", "Cuisine")
                         .WithMany("Meals")
                         .HasForeignKey("CuisineId")
@@ -505,12 +508,6 @@ namespace MealDiary.Core.Migrations
                         .WithMany("Meals")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
-                        .WithMany("Meals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
 
                     b.Navigation("AppUser");
 
@@ -524,7 +521,7 @@ namespace MealDiary.Core.Migrations
                     b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
                         .WithMany("MealCollection")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AppUser");
