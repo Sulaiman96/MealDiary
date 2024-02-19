@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace MealDiary.Core.Data;
 
 //Note To Self: All of these implementations are simply due to wanting to use integer as key from Identity Provider.
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+public class ApplicationDbContext(DbContextOptions options)
     : IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>, AppUserRole,
         IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>(options)
 {
@@ -29,5 +29,29 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.CreateRelationships();
         
         modelBuilder.AddUniqueConstraint();
+    }
+    
+    public void ResetAutoIncrementValues()
+    {
+        var tables = new[]
+        {
+            "Cuisines", 
+            "Ingredients", 
+            "MealCollections",
+            "Meals",
+            "Photos",
+            "Restaurants",
+            "SharedMealCollections",
+            "SharedMeals",
+            "AspNetUsers",
+            "AspNetUserClaims",
+            "AspNetRoles",
+            "AspNetRoleClaims"
+        }; 
+        
+        foreach (var table in tables)
+        {
+            Database.ExecuteSqlRaw($"DBCC CHECKIDENT ('{table}', RESEED, 1);");
+        }
     }
 }

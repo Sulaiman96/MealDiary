@@ -34,7 +34,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Meal>()
             .HasOne(m => m.AppUser)
             .WithMany(u => u.Meals)
-            .HasForeignKey(m => m.UserId)
+            .HasForeignKey(m => m.AppUserId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Meal>()
@@ -42,19 +42,25 @@ public static class ModelBuilderExtension
             .WithMany(r => r.Meals)
             .HasForeignKey(m => m.RestaurantId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<MealCollection>()
+            .HasOne(mc => mc.AppUser)
+            .WithMany(au => au.MealCollection)
+            .HasForeignKey(mc => mc.AppUserId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<MealIngredient>()
             .HasKey(mi => new { mi.MealId, mi.IngredientId });
 
         modelBuilder.Entity<MealIngredient>()
             .HasOne(mi => mi.Meal)
-            .WithMany(m => m.Ingredients)
+            .WithMany(m => m.MealIngredients)
             .HasForeignKey(mi => mi.MealId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<MealIngredient>()
             .HasOne(mi => mi.Ingredient)
-            .WithMany(i => i.Meals)
+            .WithMany(i => i.MealIngredients)
             .HasForeignKey(mi => mi.IngredientId)
             .OnDelete(DeleteBehavior.Restrict);
 

@@ -1,22 +1,22 @@
 [
   {
-    "Name": "Burgers",
+    "Name": "Breakfast",
     "CreatedOn": "2023-04-10T18:30:00Z",
-    "UserId":1
+    "AppUserId":1
   },
   {
     "Name": "Vegan",
     "CreatedOn": "2023-05-10T18:30:00Z",
-    "UserId":2
+    "AppUserId":1
   },
   {
-    "Name": "Vegetarian",
+    "Name": "Lunch",
     "CreatedOn": "2023-07-10T18:30:00Z",
-    "UserId":3
+    "AppUserId":2
   },
   {
     "Name": "Brunch",
     "CreatedOn": "2023-01-10T18:30:00Z",
-    "UserId":3
+    "AppUserId":2
   }
 ]

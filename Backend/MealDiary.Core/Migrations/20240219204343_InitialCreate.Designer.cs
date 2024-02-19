@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MealDiary.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240213191932_init")]
-    partial class init
+    [Migration("20240219204343_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -189,7 +189,7 @@ namespace MealDiary.Core.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CuisineId")
+                    b.Property<int?>("CuisineId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("LastModified")
@@ -205,11 +205,10 @@ namespace MealDiary.Core.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("RestaurantId")
+                    b.Property<int?>("RestaurantId")
                         .HasColumnType("int");
 
                     b.Property<string>("Review")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -295,7 +294,7 @@ namespace MealDiary.Core.Migrations
                     b.Property<bool>("IsMainPhoto")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MealId")
+                    b.Property<int?>("MealId")
                         .HasColumnType("int");
 
                     b.Property<string>("Url")
@@ -503,14 +502,12 @@ namespace MealDiary.Core.Migrations
                     b.HasOne("MealDiary.Core.Data.Models.Cuisine", "Cuisine")
                         .WithMany("Meals")
                         .HasForeignKey("CuisineId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("MealDiary.Core.Data.Models.Restaurant", "Restaurant")
                         .WithMany("Meals")
                         .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("MealDiary.Core.Data.Models.AppUser", "AppUser")
                         .WithMany("Meals")
@@ -539,13 +536,13 @@ namespace MealDiary.Core.Migrations
             modelBuilder.Entity("MealDiary.Core.Data.Models.MealIngredient", b =>
                 {
                     b.HasOne("MealDiary.Core.Data.Models.Ingredient", "Ingredient")
-                        .WithMany("Meals")
+                        .WithMany("MealIngredients")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MealDiary.Core.Data.Models.Meal", "Meal")
-                        .WithMany("Ingredients")
+                        .WithMany("MealIngredients")
                         .HasForeignKey("MealId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -578,9 +575,7 @@ namespace MealDiary.Core.Migrations
                 {
                     b.HasOne("MealDiary.Core.Data.Models.Meal", "Meal")
                         .WithMany("Photos")
-                        .HasForeignKey("MealId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MealId");
 
                     b.Navigation("Meal");
                 });
@@ -704,14 +699,14 @@ namespace MealDiary.Core.Migrations
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Ingredient", b =>
                 {
-                    b.Navigation("Meals");
+                    b.Navigation("MealIngredients");
                 });
 
             modelBuilder.Entity("MealDiary.Core.Data.Models.Meal", b =>
                 {
-                    b.Navigation("Ingredients");
-
                     b.Navigation("MealCollections");
+
+                    b.Navigation("MealIngredients");
 
                     b.Navigation("Photos");
 

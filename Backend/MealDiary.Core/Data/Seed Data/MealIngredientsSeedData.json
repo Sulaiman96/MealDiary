@@ -1,34 +1,110 @@
 [
   {
-    "MealId":1,
-    "IngredientId":1
+    "MealId": 1,
+    "IngredientId": 1
   },
   {
-    "MealId":1,
-    "IngredientId":2
+    "MealId": 1,
+    "IngredientId": 2
   },
   {
-    "MealId":1,
-    "IngredientId":3
+    "MealId": 1,
+    "IngredientId": 3
   },
   {
-    "MealId":2,
-    "IngredientId":2
+    "MealId": 2,
+    "IngredientId": 4
   },
   {
-    "MealId":2,
-    "IngredientId":4
+    "MealId": 2,
+    "IngredientId": 5
   },
   {
-    "MealId":2,
-    "IngredientId":5
+    "MealId": 2,
+    "IngredientId": 6
   },
   {
-    "MealId":3,
-    "IngredientId":3
+    "MealId": 2,
+    "IngredientId": 7
   },
   {
-    "MealId":3,
-    "IngredientId":5
+    "MealId": 3,
+    "IngredientId": 8
+  },
+  {
+    "MealId": 3,
+    "IngredientId": 9
+  },
+  {
+    "MealId": 3,
+    "IngredientId": 10
+  },
+  {
+    "MealId": 3,
+    "IngredientId": 11
+  },
+  {
+    "MealId": 4,
+    "IngredientId": 12
+  },
+  {
+    "MealId": 4,
+    "IngredientId": 13
+  },
+  {
+    "MealId": 4,
+    "IngredientId": 14
+  },
+  {
+    "MealId": 4,
+    "IngredientId": 15
+  },
+  {
+    "MealId": 5,
+    "IngredientId": 16
+  },
+  {
+    "MealId": 5,
+    "IngredientId": 17
+  },
+  {
+    "MealId": 5,
+    "IngredientId": 1
+  },
+  {
+    "MealId": 5,
+    "IngredientId": 18
+  },
+  {
+    "MealId": 6,
+    "IngredientId": 19
+  },
+  {
+    "MealId": 6,
+    "IngredientId": 20
+  },
+  {
+    "MealId": 6,
+    "IngredientId": 15
+  },
+  {
+    "MealId": 6,
+    "IngredientId": 21
+  },
+  {
+    "MealId": 7,
+    "IngredientId": 22
+  },
+  {
+    "MealId": 7,
+    "IngredientId": 23
+  },
+  {
+    "MealId": 7,
+    "IngredientId": 24
+  },
+  {
+    "MealId": 7,
+    "IngredientId": 25
   }
 ]

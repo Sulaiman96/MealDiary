@@ -1,69 +1,79 @@
 [
   {
-    "Name": "Spaghetti Bolognese",
-    "Location": "New York",
-    "Price": 12.99,
-    "Review": "Great pasta dish, highly recommend!",
-    "CreatedOn": "2023-04-10T18:30:00Z",
-    "LastModified": "2023-04-11T10:15:00Z",
-    "Rating": 8,
-    "CuisineId": 1,
-    "MealCollectionId": 1,
-    "UserId": 1,
-    "Photos": [
-      {
-        "Url": "https://www.example.com/images/spaghetti_bolognese.jpg",
-        "IsMain": true,
-        "PublicId": "abc123",
-        "MealId": 1
-      },
-      {
-        "Url": "https://www.example.com/images/spaghetti_bolognese_2.jpg",
-        "IsMain": false,
-        "PublicId": "def456",
-        "MealId": 1
-      }
-    ]
+    "Name": "Margherita Pizza",
+    "Price": 12.50,
+    "Review": "Classic and delicious.",
+    "CreatedOn": "2023-02-15T00:00:00Z",
+    "LastModified": "2023-02-15T00:00:00Z",
+    "Rating": 5,
+    "RestaurantId": 1,
+    "AppUserId": 2,
+    "CuisineId": 8
+  },
+  {
+    "Name": "Vegan Burger",
+    "Price": 10.00,
+    "Review": "Tasty and satisfying.",
+    "CreatedOn": "2023-02-16T00:00:00Z",
+    "LastModified": "2023-02-16T00:00:00Z",
+    "Rating": 4,
+    "RestaurantId": 2,
+    "AppUserId": 1,
+    "CuisineId": 4
   },
   {
     "Name": "Sushi Platter",
-    "Location": "Los Angeles",
-    "Price": 28.99,
-    "Review": "Delicious sushi, great value for the price!",
-    "CreatedOn": "2023-02-12T09:45:00Z",
-    "LastModified": null,
-    "Rating": 9,
-    "CuisineId": 2,
-    "MealCollectionId": 2,
-    "UserId": 2,
-    "Photos": [
-      {
-        "Url": "https://www.example.com/images/sushi_platter.jpg",
-        "IsMain": true,
-        "PublicId": "ghi789",
-        "MealId": 2
-      }
-    ]
+    "Price": 22.00,
+    "Review": "Fresh and exquisite.",
+    "CreatedOn": "2023-02-17T00:00:00Z",
+    "LastModified": "2023-02-17T00:00:00Z",
+    "Rating": 5,
+    "RestaurantId": 3,
+    "AppUserId": 1,
+    "CuisineId": 2
   },
   {
-    "Name": "Taco Salad",
-    "Location": "Chicago",
-    "Price": 9.99,
-    "Review": "Great Tacos, reminds me of Mexico!",
-    "CreatedOn": "2023-04-13T12:00:00Z",
-    "LastModified": "2023-03-11T10:15:00Z",
-    "Rating": 7,
-    "CuisineId": 3,
-    "MealCollectionId": 3,
-    "UserId": 3,
-    "Photos": [
-      {
-        "Url": "https://www.example.com/images/sushi_platter.jpg",
-        "IsMain": true,
-        "PublicId": "ghi789",
-        "MealId": 3
-      }
-    ]
+    "Name": "Spaghetti Carbonara",
+    "Price": 15.00,
+    "Review": "Creamy and comforting.",
+    "CreatedOn": "2023-02-18T00:00:00Z",
+    "LastModified": "2023-02-18T00:00:00Z",
+    "Rating": 4,
+    "RestaurantId": 4,
+    "AppUserId": 1,
+    "CuisineId": 1
+  },
+  {
+    "Name": "Chicken Tikka Masala",
+    "Price": 18.00,
+    "Review": "Rich flavor and perfectly spicy.",
+    "CreatedOn": "2023-02-19T00:00:00Z",
+    "LastModified": "2023-02-19T00:00:00Z",
+    "Rating": 5,
+    "RestaurantId": 5,
+    "AppUserId": 2,
+    "CuisineId": 4
+  },
+  {
+    "Name": "Caesar Salad",
+    "Price": 8.00,
+    "Review": "Crisp and refreshing.",
+    "CreatedOn": "2023-02-20T00:00:00Z",
+    "LastModified": "2023-02-20T00:00:00Z",
+    "Rating": 3,
+    "RestaurantId": 6,
+    "AppUserId": 2,
+    "CuisineId": 3
+  },
+  {
+    "Name": "BBQ Ribs",
+    "Price": 25.00,
+    "Review": "Finger-licking good.",
+    "CreatedOn": "2023-02-21T00:00:00Z",
+    "LastModified": "2023-02-21T00:00:00Z",
+    "Rating": 5,
+    "RestaurantId": 7,
+    "AppUserId": 2,
+    "CuisineId": 7
   }
 ]
-  

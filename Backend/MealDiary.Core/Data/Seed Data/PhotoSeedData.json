@@ -1,0 +1,67 @@
+[
+  {
+    "Url": "https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 2
+  },
+  {
+    "Url": "http://example.com/photos/VeganBurger_additional.jpg",
+    "IsMainPhoto": false,
+    "MealId": 2
+  },
+  {
+    "Url": "https://images.unsplash.com/photo-1570877215023-229052e10c34?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 3
+  },
+  {
+    "Url": "https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 4
+  },
+  {
+    "Url": "http://example.com/photos/SpaghettiCarbonara_additional.jpg",
+    "IsMainPhoto": false,
+    "MealId": 4
+  },
+  {
+    "Url": "https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 1
+  },
+  {
+    "Url": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 5
+  },
+  {
+    "Url": "http://example.com/photos/ChickenTikkaMasala_additional.jpg",
+    "IsMainPhoto": false,
+    "MealId": 5
+  },
+  {
+    "Url": "https://plus.unsplash.com/premium_photo-1692309186600-03bb12fd3adb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 6
+  },
+  {
+    "Url": "http://example.com/photos/CaesarSalad_additional.jpg",
+    "IsMainPhoto": false,
+    "MealId": 6
+  },
+  {
+    "Url": "https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "IsMainPhoto": true,
+    "MealId": 7
+  },
+  {
+    "Url": "http://example.com/photos/BBQRibs_additional1.jpg",
+    "IsMainPhoto": false,
+    "MealId": 7
+  },
+  {
+    "Url": "http://example.com/photos/BBQRibs_additional2.jpg",
+    "IsMainPhoto": false,
+    "MealId": 7
+  }
+]

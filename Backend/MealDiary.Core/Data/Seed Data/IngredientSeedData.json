@@ -1,35 +1,27 @@
-[  
-  {
-    "Name": "Salt"
-  },
-  {
-    "Name": "Pepper"
-  },
-  {
-    "Name": "Garlic"
-  },
-  {
-    "Name": "Onion"
-  },
-  {
-    "Name": "Ginger"
-  },
-  {
-    "Name": "Tomato"
-  },
-  {
-    "Name": "Olive Oil"
-  },
-  {
-    "Name": "Onion Powder"
-  },
-  {
-    "Name": "Garlic Powder"
-  },
-  {
-    "Name": "Cornflour"
-  },
-  {
-    "Name": "Flour"
-  }
+[
+  { "Name": "Tomato Sauce" },
+  { "Name": "Mozzarella Cheese" },
+  { "Name": "Basil" },
+  { "Name": "Vegan Patty" },
+  { "Name": "Lettuce" },
+  { "Name": "Tomato" },
+  { "Name": "Vegan Cheese" },
+  { "Name": "Sushi Rice" },
+  { "Name": "Nori" },
+  { "Name": "Salmon" },
+  { "Name": "Avocado" },
+  { "Name": "Spaghetti" },
+  { "Name": "Egg" },
+  { "Name": "Pancetta" },
+  { "Name": "Parmesan Cheese" },
+  { "Name": "Chicken" },
+  { "Name": "Yogurt" },
+  { "Name": "Masala" },
+  { "Name": "Romaine Lettuce" },
+  { "Name": "Croutons" },
+  { "Name": "Caesar Dressing" },
+  { "Name": "Pork Ribs" },
+  { "Name": "BBQ Sauce" },
+  { "Name": "Garlic" },
+  { "Name": "Brown Sugar" }
 ]
