@@ -8,6 +8,9 @@ public class RegisterRequest
     public string UserName { get; set; }
     
     [Required]
-    [StringLength(8, MinimumLength = 4)]
+    public string Email { get; set; }
+    
+    [Required]
+    [StringLength(maximumLength:16, MinimumLength = 8)]
     public string Password { get; set; }
 }

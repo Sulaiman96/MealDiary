@@ -24,5 +24,8 @@ public class MappingProfile : Profile
                 opt => opt.MapFrom(src => src.Ingredient.Id))
             .ForMember(dest => dest.Name,
                 opt => opt.MapFrom(src => src.Ingredient.Name));
+
+        CreateMap<RegisterRequest, AppUser>();
+        
     }
 }

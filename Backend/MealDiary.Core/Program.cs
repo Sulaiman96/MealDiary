@@ -27,10 +27,11 @@ var app = builder.Build();
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
         var userManager = services.GetRequiredService<UserManager<AppUser>>();
+        var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
         await context.Database.MigrateAsync();
         Seed.ResetAutoIncrement(context);
         
-        await Seed.SeedUser(userManager);
+        await Seed.SeedUser(userManager, roleManager);
         await Seed.SeedRestaurant(context);
         await Seed.SeedCuisine(context);
         await Seed.SeedIngredient(context);
