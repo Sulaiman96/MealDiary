@@ -52,7 +52,7 @@ public class Seed
         await context.SaveChangesAsync();
     }
 
-    public static async Task SeedUser(UserManager<AppUser> userManager)
+    public static async Task SeedUser(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
     {
         if (await userManager.Users.AnyAsync())
             return;
@@ -60,6 +60,26 @@ public class Seed
         var userData = await File.ReadAllTextAsync("Data/Seed Data/UserSeedData.json");
         
         var users = JsonSerializer.Deserialize<List<AppUser>>(userData, Options);
+
+        var roles = new List<AppRole>
+        {
+            new AppRole {Name = "Member"},
+            new AppRole {Name = "Admin"},
+        };
+
+        foreach (var role in roles)
+        {
+            await roleManager.CreateAsync(role);
+        }
+        
+        var admin = new AppUser
+        {
+            UserName = "admin",
+            Email = "admin@gmail.com"
+        };
+
+        await userManager.CreateAsync(admin, "Password1");
+        await userManager.AddToRoleAsync(admin, "Admin");
     
         foreach (var user in users)
         {
@@ -67,6 +87,8 @@ public class Seed
             user.Email = user.Email?.ToLower();
             
             await userManager.CreateAsync(user, "Password1");
+
+            await userManager.AddToRoleAsync(user, "Member");
         }
     }
     
