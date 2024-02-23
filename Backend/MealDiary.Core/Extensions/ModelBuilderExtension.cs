@@ -129,5 +129,9 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Restaurant>()
             .HasIndex(i => i.Name)
             .IsUnique();
+
+        modelBuilder.Entity<AppUser>()
+            .HasIndex(i => i.UserName)
+            .IsUnique();
     }
 }

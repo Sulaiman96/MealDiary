@@ -1,10 +1,12 @@
 [
   {
-    "UserName": "Sulaiman",
+    "FirstName": "Sulaiman",
+    "LastName": "Maarij",
     "Email": "sulaiman@gmail.com"
   },
   {
-    "UserName": "Tahmina",
-    "Email": "tahmina@gmail.com"
+    "FirstName": "Mustafa",
+    "LastName": "Al-Khafaji",
+    "Email": "mustafa@gmail.com"
   }
 ]

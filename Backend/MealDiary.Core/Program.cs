@@ -41,7 +41,7 @@ var app = builder.Build();
         
         //With Relationships
         await Seed.SeedMealIngredients(context);
-        await Seed.SeedMealMealCollections(context); // PROBLEM
+        await Seed.SeedMealMealCollections(context);
 
     }
     catch (Exception ex)
