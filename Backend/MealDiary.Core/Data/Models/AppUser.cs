@@ -1,10 +1,11 @@
-using System.Collections;
 using Microsoft.AspNetCore.Identity;
 
 namespace MealDiary.Core.Data.Models;
 
 public class AppUser: IdentityUser<int>
 {
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
     public ICollection<Meal>? Meals { get; } = new List<Meal>();
     public ICollection<AppUserRole>? UserRoles { get; set; } = new List<AppUserRole>();
     public ICollection<MealCollection>? MealCollection { get; } = new List<MealCollection>();

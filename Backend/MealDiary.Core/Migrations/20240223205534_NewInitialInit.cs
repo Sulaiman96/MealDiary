@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MealDiary.Core.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class NewInitialInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,6 +32,8 @@ namespace MealDiary.Core.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -205,7 +207,6 @@ namespace MealDiary.Core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -216,7 +217,7 @@ namespace MealDiary.Core.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,15 +233,15 @@ namespace MealDiary.Core.Migrations
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
                     CuisineId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Meals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Meals_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Meals_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -427,6 +428,13 @@ namespace MealDiary.Core.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_UserName",
+                table: "AspNetUsers",
+                column: "UserName",
+                unique: true,
+                filter: "[UserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -461,6 +469,11 @@ namespace MealDiary.Core.Migrations
                 column: "MealCollectionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Meals_AppUserId",
+                table: "Meals",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Meals_CuisineId",
                 table: "Meals",
                 column: "CuisineId");
@@ -469,11 +482,6 @@ namespace MealDiary.Core.Migrations
                 name: "IX_Meals_RestaurantId",
                 table: "Meals",
                 column: "RestaurantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Meals_UserId",
-                table: "Meals",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photos_MealId",

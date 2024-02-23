@@ -74,7 +74,9 @@ public class Seed
         
         var admin = new AppUser
         {
-            UserName = "admin",
+            UserName = "admin@gmail.com",
+            FirstName = "admin",
+            LastName = "admin",
             Email = "admin@gmail.com"
         };
 
@@ -83,7 +85,9 @@ public class Seed
     
         foreach (var user in users)
         {
-            user.UserName = user.UserName?.ToLower();
+            user.UserName = user.Email?.ToLower();
+            user.FirstName = user.FirstName?.ToLower();
+            user.LastName = user.LastName?.ToLower();
             user.Email = user.Email?.ToLower();
             
             await userManager.CreateAsync(user, "Password1");

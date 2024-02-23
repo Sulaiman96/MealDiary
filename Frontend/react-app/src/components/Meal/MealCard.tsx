@@ -1,6 +1,7 @@
 import React from 'react'
 import "./MealCard.css";
 import { Meal } from '../../Types/meal';
+import { Link } from 'react-router-dom';
 
 interface Props {
     id: string;
@@ -9,7 +10,7 @@ interface Props {
 
 const MealCard: React.FC<Props> = ({ id, meal: mealResult }: Props): JSX.Element => {
     return (
-        <div className='meal'>
+        <Link to={'/meal/${mealResult.name}'} className='meal'>
             <img
                 src={mealResult.photos.find(photo => photo.isMain === true)?.url}
                 alt='meal photo'
@@ -20,7 +21,7 @@ const MealCard: React.FC<Props> = ({ id, meal: mealResult }: Props): JSX.Element
             </div>
             <p className='info'>Ingredients: {mealResult.ingredients.map(ingredient => ingredient.name).join(', ')}.</p>
             <p className='info'>{mealResult.price} </p>
-        </div>
+        </Link>
     )
 }
 

@@ -17,10 +17,11 @@ public class AccountController(
     [HttpPost("register")]
     public async Task<ActionResult<LoginResponse>> Register(RegisterRequest registerRequest)
     {
-        if (await UserExists(registerRequest.UserName, registerRequest.Email))
-            return BadRequest("Username Or Email Already Exists");
+        if (await UserExists(registerRequest.Email))
+            return BadRequest("Email Already Exists");
 
         var user = _mapper.Map<AppUser>(registerRequest);
+        user.UserName = user.Email;
         
         var result = await userManager.CreateAsync(user, registerRequest.Password);
 
@@ -34,35 +35,36 @@ public class AccountController(
 
         var userToReturn = new LoginResponse
         {
-            UserName = user.UserName,
-            Token = await tokenService.CreateToken(user),
-            Email = user.Email
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Token = await tokenService.CreateToken(user)
         };
 
         return Ok(userToReturn);
     }
 
-    private async Task<bool> UserExists(string userName, string email)
+    private async Task<bool> UserExists(string email)
     {
-        return await userManager.Users.AnyAsync(x => x.UserName == userName || x.Email == email);
+        return await userManager.Users.AnyAsync(x => x.UserName == email);
     }
 
     
     [HttpPost("login")]
     public async Task<ActionResult<LoginResponse>> Login(LoginRequest loginRequest)
     {
-        if (!await UserExists(loginRequest.UserName, loginRequest.Email))
-            return Unauthorized("Username & Email Does Not Exist");
+        if (!await UserExists(loginRequest.Email))
+            return Unauthorized("Email Does Not Exist");
 
-        var user = await userManager.Users.FirstOrDefaultAsync(user => user.UserName == loginRequest.UserName 
-                                                                       || user.Email == loginRequest.Email);
+        var user = await userManager.Users.FirstOrDefaultAsync(user => user.UserName == loginRequest.Email);
 
         if (user == null)
             return Unauthorized("Password Is Wrong");
         
         var userToReturn = new LoginResponse
         {
-            UserName = user.UserName,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
             Email = user.Email,
             Token = await tokenService.CreateToken(user)
         };

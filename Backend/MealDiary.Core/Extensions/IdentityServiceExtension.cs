@@ -18,6 +18,10 @@ public static class IdentityServiceExtension
             options.Password.RequireUppercase = true;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequiredLength = 8;
+            
+            options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            options.User.RequireUniqueEmail = true;
         })
         .AddRoles<AppRole>()
         .AddRoleManager<RoleManager<AppRole>>()
