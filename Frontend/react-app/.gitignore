@@ -52,3 +52,15 @@ typings/
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Ignore all files with the exe extension
+*.exe 
+
+# Ignore dist & converage folders
+converage/
+
+# Nested location
+some-folder/another-folder/*.txt
+
+# Complex name pattern
+build-config.*.yml
