@@ -42,11 +42,13 @@ const MealPage = (props: Props) => {
         console.log(setMealResult);
     }
 
-    return <>
-        <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
-        {serverError && <h1>{serverError}</h1>}
+    return <div className="h-screen flex items-center justify-center">
+        <div className='border borde'>
+            <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange} />
+            {serverError && <h1>{serverError}</h1>}
+        </div>
         <MealList mealResult={mealResult} />
-    </>
+    </div>
 }
 
 export default MealPage

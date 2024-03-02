@@ -74,7 +74,7 @@ const RegisterPage = (props: Props) => {
                                         <span className="ml-3 text-sm font-normal text-grey-900">Keep me logged in</span>
                                     </label>
                                 </div>
-                                <button className="w-full px-4 py-4 mb-3 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign Up</button>
+                                <button className="w-full px-4 py-4 mb-3 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-blue-gray-500 focus:ring-4 focus:ring-blue-gray-500 bg-blue-gray-900">Sign Up</button>
                                 <p className="text-sm leading-relaxed text-grey-900">Have an account already? <Link to={'/Login'} className="font-bold text-grey-700">Sign In</Link></p>
                             </form>
                         </div>
