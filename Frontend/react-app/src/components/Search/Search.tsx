@@ -1,3 +1,4 @@
+import { Input } from '@material-tailwind/react';
 import React, { ChangeEvent, SyntheticEvent } from 'react'
 
 interface Props {
@@ -10,7 +11,20 @@ const Search: React.FC<Props> = ({ search, onSearchSubmit, handleSearchChange }:
     return (
         <>
             <form onSubmit={onSearchSubmit}>
-                <input value={search} onChange={handleSearchChange} />
+                <Input
+                    type="search"
+                    placeholder="Search"
+                    crossOrigin={''}
+                    value={search}
+                    onChange={handleSearchChange}
+                    containerProps={{
+                        className: "min-w-[288px]",
+                    }}
+                    className=" !border-t-blue-gray-800 pl-9 placeholder:text-blue-gray-800 focus:!border-blue-gray-800"
+                    labelProps={{
+                        className: "before:content-none after:content-none",
+                    }}
+                />
             </form>
         </>
     )

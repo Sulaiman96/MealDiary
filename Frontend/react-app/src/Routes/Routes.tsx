@@ -8,6 +8,7 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import MealPage from "../Pages/MealPage/MealPage";
 import MealDetailPage from "../Pages/MealDetailPage/MealDetailPage";
 import PricingPage from "../Pages/PricingPage/PricingPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -19,8 +20,8 @@ export const router = createBrowserRouter([
             { path: "explore", element: <ExplorePage /> },
             { path: "login", element: <LoginPage /> },
             { path: "register", element: <RegisterPage /> },
-            { path: "meal", element: <MealPage /> },
-            { path: "meal/:meal", element: <MealDetailPage /> },
+            { path: "meal", element: <ProtectedRoute><MealDetailPage /></ProtectedRoute> },
+            { path: "meal/:meal", element: <ProtectedRoute><MealDetailPage /></ProtectedRoute> },
             { path: "pricing", element: <PricingPage /> }
         ]
     }
