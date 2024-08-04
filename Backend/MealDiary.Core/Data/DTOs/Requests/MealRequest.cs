@@ -3,7 +3,7 @@ namespace MealDiary.Core.Data.DTOs.Requests;
 public class MealRequest
 {
     public string Name { get; set; }
-    public string Location { get; set; }
+    public string Restaurant { get; set; }
     public decimal Price { get; set; }
     public string Review { get; set; }
     public int Rating { get; set; }

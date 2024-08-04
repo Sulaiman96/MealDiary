@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using AutoMapper;
 using MealDiary.Core.Data.DTOs.Requests;
 using MealDiary.Core.Data.DTOs.Responses;
@@ -6,14 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MealDiary.Core.Controllers;
 
-public class MealController : BaseApiController
+public class MealController(IMealService mealService, IMapper mapper) : BaseApiController(mapper)
 {
-    private readonly IMealService _mealService;
-    public MealController(IMealService mealService, IMapper mapper) : base(mapper)
-    {
-        _mealService = mealService;
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateMeal(MealRequest mealRequest)
     {
@@ -30,7 +25,7 @@ public class MealController : BaseApiController
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MealResponse>>> GetMeals()
     {
-        var meals = await _mealService.GetMeals();
+        var meals = await mealService.GetMealResponseAsync();
 
         if(!meals.Any())
             return NotFound("No Meals Found");
@@ -43,27 +38,23 @@ public class MealController : BaseApiController
     [HttpGet("{id:int}")]
     public async Task<ActionResult<MealResponse>> GetMealById(int id)
     {
-        var meal = await _mealService.GetMealByIdAsync(id);
+        var mealResponse = await mealService.GetSingleMealResponseAsync(m => m.Id == id);
         
-        if(meal is null)
+        if(mealResponse is null)
             return NotFound("No Meal Found");
 
-        var mealToReturn = _mapper.Map<MealResponse>(meal);
-
-        return Ok(mealToReturn);
+        return Ok(mealResponse);
     }
     
     [HttpGet("{mealName}")]
     public async Task<ActionResult<MealResponse>> GetMealByName(string mealName)
     {
-        var meal = await _mealService.GetMealByNameAsync(mealName);
+        var mealResponse = await mealService.GetSingleMealResponseAsync(m => m.Name == mealName);
         
-        if(meal is null)
+        if(mealResponse is null)
             return NotFound("No Meal Found");
 
-        var mealToReturn = _mapper.Map<MealResponse>(meal);
-
-        return Ok(mealToReturn);
+        return Ok(mealResponse);
     }
 
     [HttpDelete("{id:int}")]

@@ -1,14 +1,13 @@
+using AutoMapper;
 using MealDiary.Core.Data;
 using MealDiary.Core.Data.DTOs.Requests;
 using MealDiary.Core.Data.DTOs.Responses;
 
-namespace MealDiary.Core.Services;
+namespace MealDiary.Core.Services.Implementation;
 
-public class IngredientService : BaseService, IIngredientService
+public class IngredientService(ApplicationDbContext context, IMapper mapper)
+    : BaseService(context, mapper), IIngredientService
 {
-    public IngredientService(ApplicationDbContext context) : base(context)
-    {
-    }
     public IngredientResponse CreateIngredient(IngredientRequest ingredientRequest)
     {
         throw new NotImplementedException();

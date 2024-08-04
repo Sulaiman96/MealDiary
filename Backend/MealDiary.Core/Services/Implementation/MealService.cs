@@ -1,9 +1,14 @@
+using System.Linq.Expressions;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MealDiary.Core.Data;
+using MealDiary.Core.Data.DTOs.Responses;
 using MealDiary.Core.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace MealDiary.Core.Services;
+namespace MealDiary.Core.Services.Implementation;
 
-public class MealService(ApplicationDbContext context) : BaseService(context), IMealService
+public class MealService(ApplicationDbContext context, IMapper mapper) : BaseService(context, mapper), IMealService
 {
     public Task<Meal> CreateMealAsync(Meal mealRequest)
     {
@@ -14,40 +19,43 @@ public class MealService(ApplicationDbContext context) : BaseService(context), I
     {
         throw new NotImplementedException();
     }
-
-    public async Task<Meal?> GetMealByIdAsync(int id)
-    {
-        return null;
-        // return await Context.Meals
-        //     .Include(m => m.Cuisine)
-        //     .Include(m => m.MealCollection)
-        //     .Include(m => m.User)
-        //     .Include(m => m.Ingredients).ThenInclude(m => m.Ingredient)
-        //     .Include(m => m.Photos)
-        //     .FirstOrDefaultAsync(i => i.Id == id);
-    }
     
-    public async Task<Meal?> GetMealByNameAsync(string mealName)
+    public async Task<Meal?> GetMealByNameAsync(Expression<Func<Meal, bool>> condition)
     {
-        return null;
-        // return await Context.Meals
-        //     .Include(m => m.Cuisine)
-        //     .Include(m => m.MealCollection)
-        //     .Include(m => m.User)
-        //     .Include(m => m.Ingredients).ThenInclude(m => m.Ingredient)
-        //     .Include(m => m.Photos)
-        //     .FirstOrDefaultAsync(i => i.Name == mealName);
+        return await Context.Meals
+            .Include(m => m.Restaurant)
+            .Include(m => m.AppUser)
+            .Include(m => m.Cuisine)
+            .Include(m => m.Photos)
+            .Include(m => m.MealCollections)!.ThenInclude(m => m.MealCollection)
+            .Include(m => m.MealIngredients)!.ThenInclude(m => m.Ingredient)
+            .FirstOrDefaultAsync(condition);
     }
 
     public async Task<IEnumerable<Meal>> GetMeals()
     {
-        return null;
-        // return await Context.Meals
-        //     .Include(m => m.Cuisine)
-        //     .Include(m => m.MealCollection)
-        //     .Include(m => m.User)
-        //     .Include(m => m.Ingredients).ThenInclude(m => m.Ingredient)
-        //     .Include(m => m.Photos)
-        //     .ToListAsync();
+        return await Context.Meals
+            .Include(m => m.Restaurant)
+            .Include(m => m.AppUser)
+            .Include(m => m.Cuisine)
+            .Include(m => m.Photos)
+            .Include(m => m.MealCollections)!.ThenInclude(m => m.MealCollection)
+            .Include(m => m.MealIngredients)!.ThenInclude(m => m.Ingredient)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<MealResponse?>> GetMealResponseAsync()
+    {
+        return await Context.Meals
+            .ProjectTo<MealResponse>(Mapper.ConfigurationProvider)
+            .ToListAsync();
+    }
+
+    public async Task<MealResponse?> GetSingleMealResponseAsync(Expression<Func<Meal, bool>> condition)
+    {
+        return await Context.Meals
+            .Where(condition)
+            .ProjectTo<MealResponse>(Mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync();
     }
 }

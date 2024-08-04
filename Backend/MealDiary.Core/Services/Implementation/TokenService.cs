@@ -5,7 +5,7 @@ using MealDiary.Core.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MealDiary.Core.Services;
+namespace MealDiary.Core.Services.Implementation;
 
 public class TokenService(IConfiguration configuration, UserManager<AppUser> userManager)
     : ITokenService

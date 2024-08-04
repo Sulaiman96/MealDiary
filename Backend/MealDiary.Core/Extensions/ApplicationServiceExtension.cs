@@ -2,6 +2,7 @@ using AutoMapper;
 using MealDiary.Core.Data;
 using MealDiary.Core.Mappings;
 using MealDiary.Core.Services;
+using MealDiary.Core.Services.Implementation;
 using Microsoft.EntityFrameworkCore;
 
 namespace MealDiary.Core.Extensions;
